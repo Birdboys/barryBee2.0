@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bifsqvk80gj3y"]
+[gd_scene load_steps=13 format=3 uid="uid://bifsqvk80gj3y"]
 
 [ext_resource type="Script" path="res://Scripts/base_boss.gd" id="1_7d617"]
 [ext_resource type="Texture2D" uid="uid://bt51kb66eblb7" path="res://Assets/bears/temp_body.png" id="2_0vb11"]
@@ -132,18 +132,6 @@ tracks/1/keys = {
 "method": &"startRecovery"
 }]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("bossPawLeft:billboard")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [1, 0]
-}
 
 [sub_resource type="Animation" id="Animation_lfx7v"]
 resource_name = "idle"
@@ -203,93 +191,20 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_geahb"]
-resource_name = "attack4"
-length = 3.0
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("bossPawLeft:billboard")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [1, 0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("bossPawLeft:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.75, 1.5, 2, 2.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(11.556, 5.353, -2), Vector3(11.556, 5.353, -2), Vector3(9.47915, 5.353, -10.3361), Vector3(9.47915, 5.353, -10.3361), Vector3(9.47915, 5.353, -10.3361)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": ["recovery1"],
-"method": &"startRecovery"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_0e1g6"]
-resource_name = "anticipation4"
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("bossEarLeft:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(5.843, 24.187, -0.5), Vector3(5.843, 22.187, -0.5), Vector3(5.843, 24.187, -0.5), Vector3(5.843, 22.187, -0.5), Vector3(5.843, 24.187, -0.5)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": ["attack4"],
-"method": &"startAttack"
-}]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8syek"]
 _data = {
 "RESET": SubResource("Animation_eglyx"),
 "anticipation1": SubResource("Animation_63gdp"),
 "anticipation2": SubResource("Animation_lpreu"),
-"anticipation4": SubResource("Animation_0e1g6"),
 "attack1": SubResource("Animation_k5b7k"),
-"attack4": SubResource("Animation_geahb"),
 "idle": SubResource("Animation_lfx7v"),
 "recovery1": SubResource("Animation_g28w2")
 }
 
 [node name="baseBoss" type="Node3D"]
 script = ExtResource("1_7d617")
+bee_angle = null
+bee_pos = null
 
 [node name="bossBody" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
