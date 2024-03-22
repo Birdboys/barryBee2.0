@@ -1,10 +1,11 @@
 extends CharacterBody3D
 
 @onready var gravity := 10.0
-@onready var bee_speed := 1.0
+@onready var bee_speed := 0.5
 @onready var bee_max_vert := 15.0
+@onready var field_height := 5.0
 @onready var field_radius := 15.0
-@onready var cam_offset := Vector3(0,5,-15)
+@onready var cam_offset := Vector3(0,8,-15)
 @onready var pollen_charge_rate := 35.0
 @onready var pollen_use_rate := 20.0
 @onready var pollen_val := 0.0
@@ -41,10 +42,10 @@ func handlePollen(delta):
 	pollenLabel.text = "Honey %s" % pollen_val
 	
 func moveCamera():
-	cam.position = cam_offset.rotated(Vector3.UP, deg_to_rad(getAngle()))
-	cam.look_at(Vector3(0, position.y, 0))
+	cam.position = cam_offset.rotated(Vector3.UP, getAngle()) - Vector3(0, position.y, 0)
+	cam.look_at(Vector3(0, cam_offset.y, 0))
 	
 func getAngle():
 	var rot_position = Vector3(position.x, 0, position.z)
-	return rad_to_deg(Vector3.FORWARD.signed_angle_to(rot_position, Vector3.UP))
+	return Vector3.FORWARD.signed_angle_to(rot_position, Vector3.UP)
 
