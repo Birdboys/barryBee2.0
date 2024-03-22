@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://jxq0tqjk3anq"]
+
+[ext_resource type="Script" path="res://Scripts/bee_character.gd" id="1_w76f5"]
+[ext_resource type="Texture2D" uid="uid://dokb1ku6oidl3" path="res://icon.svg" id="2_5mbkc"]
+[ext_resource type="Script" path="res://Scripts/bee_cam.gd" id="3_8l30g"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1d5xi"]
+radius = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xr7x2"]
+radius = 1.0
+
+[node name="beeCharacter" type="CharacterBody3D"]
+collision_layer = 0
+script = ExtResource("1_w76f5")
+
+[node name="beeSprite" type="Sprite3D" parent="."]
+billboard = 1
+texture = ExtResource("2_5mbkc")
+
+[node name="beeCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_1d5xi")
+
+[node name="beeHurtbox" type="Area3D" parent="."]
+
+[node name="beeHurtboxArea" type="CollisionShape3D" parent="beeHurtbox"]
+shape = SubResource("SphereShape3D_xr7x2")
+
+[node name="beeAnim" type="AnimationPlayer" parent="."]
+
+[node name="beeCam" type="Camera3D" parent="."]
+current = true
+script = ExtResource("3_8l30g")
+
+[node name="beeUI" type="CanvasLayer" parent="."]
+
+[node name="beeUIMargin" type="MarginContainer" parent="beeUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="beePollenLabel" type="Label" parent="beeUI/beeUIMargin"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Honey: "
+horizontal_alignment = 1
+vertical_alignment = 1
