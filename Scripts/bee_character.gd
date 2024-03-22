@@ -2,8 +2,9 @@ extends CharacterBody3D
 
 @onready var gravity := 10.0
 @onready var bursting := false
+@onready var bee_health := 3
 @onready var bee_speed := 0.5
-@onready var bee_max_vert := 15.0
+@onready var bee_max_vert := 8
 @onready var field_height := 5.0
 @onready var field_radius := 15.0
 @onready var cam_offset := Vector3(0,8,-15)
@@ -16,7 +17,8 @@ extends CharacterBody3D
 @onready var double_tap_timer := 0.0
 @onready var double_tap_sensitivity := 0.2
 @onready var cam := $beeCam
-@onready var pollenLabel := $beeUI/beeUIMargin/beePollenLabel
+@onready var pollenBar := $beeUI/beeUIMargin/UIBars/pollenBar
+@onready var progressBar := $beeUI/beeUIMargin/UIBars/progressBar
 
 func _process(delta):
 	handleInput(delta)
@@ -51,8 +53,7 @@ func handlePollen(delta):
 			pollen_val = max(pollen_val, 0.0)
 			velocity.y += pollen_thrust * delta
 			velocity.y = min(velocity.y, bee_max_vert)
-	pollenLabel.text = "Honey %s" % pollen_val
-
+	pollenBar.value = pollen_val
 func pollenBurst():
 	if pollen_val > 0 and not is_on_floor():
 		pollen_val -= pollen_burst_cost
@@ -68,3 +69,9 @@ func getAngle():
 	var rot_position = Vector3(position.x, 0, position.z)
 	return Vector3.FORWARD.signed_angle_to(rot_position, Vector3.UP)
 
+func setProgressBar(val):
+	progressBar.value = val
+	
+func _on_bee_hurtbox_area_entered(area):
+	bee_health-=1
+	print("IM HIT OH FUG OH HGOD AHg")

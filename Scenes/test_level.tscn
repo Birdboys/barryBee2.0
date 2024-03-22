@@ -45,3 +45,6 @@ transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 
 [node name="beeCharacter" parent="." instance=ExtResource("2_yhk1x")]
 
 [node name="baseBoss" parent="." instance=ExtResource("3_ok2be")]
+
+[node name="fightTimer" type="Timer" parent="."]
+one_shot = true
