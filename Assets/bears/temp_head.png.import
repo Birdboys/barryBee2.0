@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4ihjgk50sty2"
 path.s3tc="res://.godot/imported/temp_head.png-3c176cdf4fe0aa0e9e9be464e62ec3a5.s3tc.ctex"
+path.etc2="res://.godot/imported/temp_head.png-3c176cdf4fe0aa0e9e9be464e62ec3a5.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/bears/temp_head.png"
-dest_files=["res://.godot/imported/temp_head.png-3c176cdf4fe0aa0e9e9be464e62ec3a5.s3tc.ctex"]
+dest_files=["res://.godot/imported/temp_head.png-3c176cdf4fe0aa0e9e9be464e62ec3a5.s3tc.ctex", "res://.godot/imported/temp_head.png-3c176cdf4fe0aa0e9e9be464e62ec3a5.etc2.ctex"]
 
 [params]
 

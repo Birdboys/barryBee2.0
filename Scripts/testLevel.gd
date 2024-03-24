@@ -16,6 +16,7 @@ func _ready():
 	placeBee(15)
 	bee.position.y = 2
 	boss.field_radius = bee_radius + 1
+	boss.camera_trauma.connect(bee.cameraTrauma)
 	bee.field_radius = bee_radius
 	fightTimer.start(fight_length)
 	
@@ -40,4 +41,3 @@ func increaseProgress(amount):
 	time_left -= amount
 	time_left = max(0.01, time_left)
 	fightTimer.start(time_left)
-	
