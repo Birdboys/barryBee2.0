@@ -56,6 +56,10 @@ pointing/emulate_touch_from_mouse=true
 3d_physics/layer_4="boss_hurt"
 3d_physics/layer_5="boss_hit"
 
+[physics]
+
+3d/default_gravity=10.0
+
 [rendering]
 
 renderer/rendering_method="mobile"

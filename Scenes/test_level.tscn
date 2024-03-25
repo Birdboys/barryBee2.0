@@ -48,3 +48,5 @@ transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 
 
 [node name="fightTimer" type="Timer" parent="."]
 one_shot = true
+
+[connection signal="timeout" from="fightTimer" to="." method="_on_fight_timer_timeout"]

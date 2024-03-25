@@ -1,6 +1,6 @@
 extends State
 
-@onready var jump_boost := 2.0
+@onready var jump_boost := 5.0
 
 func update(delta):
 	bee.updatePollen(bee.pollen_charge_rate*delta)

@@ -1,5 +1,5 @@
 extends State
-@onready var dash_cooldown := 3.0
+@onready var dash_cooldown := 1.5
 
 func enter():
 	if Input.is_action_pressed("left"): bee.beeAnim.play("dash_left")
@@ -19,7 +19,6 @@ func setDashTimer():
 	
 func _on_bee_anim_animation_finished(anim_name):
 	if "dash" in anim_name:
-		print("DASH FINISHED")
 		emit_signal("transitioned", self, "beeFlying")
 
 

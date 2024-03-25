@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://jxq0tqjk3anq"]
+[gd_scene load_steps=24 format=3 uid="uid://jxq0tqjk3anq"]
 
 [ext_resource type="Script" path="res://Scripts/bee_character.gd" id="1_w76f5"]
 [ext_resource type="Texture2D" uid="uid://dokb1ku6oidl3" path="res://icon.svg" id="2_5mbkc"]
 [ext_resource type="Script" path="res://Scripts/bee_cam.gd" id="3_8l30g"]
 [ext_resource type="Texture2D" uid="uid://ng3agfk2opgd" path="res://Assets/temp/temp_pollen_bg.png" id="4_nibth"]
+[ext_resource type="PackedScene" uid="uid://ddn4r2cx0d5tp" path="res://Scenes/shadow_component.tscn" id="4_y8xwk"]
 [ext_resource type="Texture2D" uid="uid://dvgbcyx3slhhr" path="res://Assets/temp/temp_pollen_front.png" id="5_7hu6r"]
 [ext_resource type="Texture2D" uid="uid://dstr8323ogqpf" path="res://Assets/temp/temp_pollen_fill.png" id="6_2qol0"]
 [ext_resource type="Texture2D" uid="uid://cyqfsco4u2u61" path="res://Assets/temp/temp_progress_bg.png" id="7_fuoxu"]
@@ -19,14 +20,14 @@
 radius = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xr7x2"]
-radius = 1.0
+radius = 0.65
 
 [sub_resource type="Animation" id="Animation_tjvyh"]
 length = 0.001
 
 [sub_resource type="Animation" id="Animation_m2xhm"]
 resource_name = "dash_left"
-length = 0.5
+length = 0.15
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -68,9 +69,14 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkel7"]
 size = Vector2(720, 426)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8tnka"]
+height = 1.0
+radius = 0.25
+
 [node name="beeCharacter" type="CharacterBody3D"]
 collision_layer = 0
 script = ExtResource("1_w76f5")
+bee_air_speed = 3.0
 
 [node name="beeSprite" type="Sprite3D" parent="."]
 billboard = 1
@@ -142,6 +148,16 @@ texture_over = ExtResource("8_xkegg")
 texture_progress = ExtResource("9_lhkvy")
 texture_progress_offset = Vector2(4, 4)
 
+[node name="fpsLabel" type="Label" parent="beeUI/beeUIMargin"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0.764706, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 52
+text = "FPS:"
+
 [node name="mobileButtons" type="Control" parent="beeUI"]
 layout_mode = 3
 anchors_preset = 15
@@ -181,6 +197,20 @@ script = ExtResource("13_4omoj")
 
 [node name="beeDashing" type="Node" parent="stateMachine"]
 script = ExtResource("14_252b0")
+
+[node name="shadowComponent" parent="." instance=ExtResource("4_y8xwk")]
+max_shadow_radius = 1.0
+casting_shadow = false
+scale_size = true
+
+[node name="beeStinger" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 8
+monitorable = false
+
+[node name="beeStingerCol" type="CollisionShape3D" parent="beeStinger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("CylinderShape3D_8tnka")
 
 [connection signal="area_entered" from="beeHurtbox" to="." method="_on_bee_hurtbox_area_entered"]
 [connection signal="animation_finished" from="beeAnim" to="stateMachine/beeDashing" method="_on_bee_anim_animation_finished"]

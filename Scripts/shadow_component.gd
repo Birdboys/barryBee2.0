@@ -3,6 +3,7 @@ extends Node3D
 @export var max_shadow_radius : float
 @export var casting_shadow := false
 @export var max_shadow_dist := 25.0
+@export var scale_size := false
 @onready var shadowRay := $shadowRay
 @onready var shadowSprite := $shadowSprite
 func _ready():
@@ -20,6 +21,9 @@ func _process(delta):
 				shadowSprite.mesh.size = Vector2(max_shadow_radius, max_shadow_radius) * 2 #* (1-remap(collision_distance, 0.0, max_shadow_dist, 0.5, 1))
 				shadowSprite.mesh.material.albedo_color = Color(Color.WHITE, 0.9-remap_distance/2.0)
 				shadowSprite.global_position = collision_point + Vector3.UP * 0.1
+				if scale_size:
+					shadowSprite.mesh.size = (0.9-remap_distance/2.0) * Vector2(max_shadow_radius, max_shadow_radius)*2
+
 func toggleShadow(on):
 	casting_shadow = on
 	shadowRay.enabled = on

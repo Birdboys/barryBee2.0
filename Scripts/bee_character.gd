@@ -5,7 +5,7 @@ class_name Bee
 @onready var bee_air_acc := 1.5
 @export var bee_air_speed := 0.0
 @onready var bee_max_vert := 8
-@onready var bee_terminal_velocity := 45.0
+@onready var bee_terminal_velocity := 55.0
 @onready var bee_jump_boost := 2.0
 @onready var pollen_charge_rate := 35.0
 @onready var pollen_use_rate := 40.0
@@ -26,6 +26,8 @@ class_name Bee
 @onready var beeAnim := $beeAnim
 @onready var stateMachine := $stateMachine
 @onready var mobileButtons := $beeUI/mobileButtons
+@onready var fpsLabel := $beeUI/beeUIMargin/fpsLabel
+@onready var stinger := $beeStinger as Area3D
 
 var bee_speed : float
 var bee_air_max_speed : float
@@ -40,6 +42,7 @@ func _ready():
 	
 func _process(delta):
 	moveCamera()
+	fpsLabel.text = "FPS:%s" % int(Engine.get_frames_per_second())
 
 func updatePollen(amount):
 	pollen_val += amount
