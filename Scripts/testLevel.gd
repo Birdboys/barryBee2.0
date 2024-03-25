@@ -4,20 +4,19 @@ extends Node3D
 @onready var bee := $beeCharacter
 @onready var boss := $baseBoss
 @onready var fightTimer := $fightTimer
-@onready var field_radius := 15.0
+@onready var field_radius := 20.0
 @onready var field_segments := 24
-@onready var field_platform_length := 2
-@onready var bee_radius := field_radius-(field_platform_length/2.0)
+@onready var field_platform_length := 2.5
 @onready var fight_length := 45.0
 @onready var current_fight_progress := 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	setField(field_radius, field_segments, field_platform_length)
-	placeBee(15)
+	placeBee(0)
 	bee.position.y = 2
-	boss.field_radius = bee_radius + 1
+	boss.field_radius = field_radius
 	boss.camera_trauma.connect(bee.cameraTrauma)
-	bee.field_radius = bee_radius
+	bee.setStats(field_radius)
 	fightTimer.start(fight_length)
 	
 func _process(delta):
@@ -27,13 +26,13 @@ func _process(delta):
 	if Input.is_action_just_pressed("cheat"): increaseProgress(5)
 	
 func setField(radius, segments, platform_length=1):
-	fieldPlatform.radius = radius
+	fieldPlatform.radius = radius + platform_length/2.0
 	fieldPlatform.sides = segments
-	fieldHole.radius = radius - platform_length
+	fieldHole.radius = radius - platform_length/2.0
 	fieldHole.sides = segments
 	
 func placeBee(deg):
-	bee.position = Vector3.FORWARD.rotated(Vector3.UP, deg_to_rad(deg)) * bee_radius
+	bee.position = Vector3.FORWARD.rotated(Vector3.UP, deg_to_rad(deg)) * field_radius
 
 func increaseProgress(amount):
 	var time_left = fightTimer.time_left

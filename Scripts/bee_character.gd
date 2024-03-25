@@ -1,18 +1,12 @@
 extends CharacterBody3D
 class_name Bee
 @onready var gravity := 10.0
-@onready var bursting := false
 @onready var bee_health := 3
-@onready var bee_speed := 0.5
 @onready var bee_air_acc := 1.5
-@onready var bee_air_max_speed := 0.75
 @export var bee_air_speed := 0.0
 @onready var bee_max_vert := 8
-@onready var bee_terminal_velocity := 50.0
+@onready var bee_terminal_velocity := 45.0
 @onready var bee_jump_boost := 2.0
-@onready var field_height := 5.0
-@onready var field_radius := 15.0
-@onready var cam_offset := Vector3(0,8,-15)
 @onready var pollen_charge_rate := 35.0
 @onready var pollen_use_rate := 40.0
 @onready var pollen_val := 0.0
@@ -32,11 +26,18 @@ class_name Bee
 @onready var beeAnim := $beeAnim
 @onready var stateMachine := $stateMachine
 @onready var mobileButtons := $beeUI/mobileButtons
+
+var bee_speed : float
+var bee_air_max_speed : float
+var field_radius : float
+var field_height : float
+var cam_offset : Vector3 #8, -15
 func _ready():
 	await get_tree().process_frame
 	await get_tree().process_frame
 	stateMachine.initialize(self)
 	initializeMobileButtons()
+	
 func _process(delta):
 	moveCamera()
 
@@ -67,9 +68,15 @@ func initializeMobileButtons():
 	var button_size = screen_size/3
 	for x in range(0, mobileButtons.get_child_count()):
 		var button := mobileButtons.get_child(x)
-		button.shape.size = button_size
+		button.shape.size = button_size 
 		button.global_position = Vector2(0, screen_size.y-button_size.y) + x * Vector2(button_size.x,0) + button_size/2.0
-		print(button.global_position)
 
 func cameraTrauma(trauma):
 	cam.changeTrauma(trauma)
+
+func setStats(rad : float):
+	field_radius = rad
+	field_height = 10
+	bee_speed = 7.5/rad
+	bee_air_max_speed = 1.5 * bee_speed
+	cam_offset = Vector3(0, 8, -0.6 * rad)

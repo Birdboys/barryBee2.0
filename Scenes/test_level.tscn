@@ -31,12 +31,12 @@ shadow_enabled = true
 use_collision = true
 
 [node name="platform" type="CSGCylinder3D" parent="levelRing"]
-height = 0.5
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 smooth_faces = false
 
 [node name="hole" type="CSGCylinder3D" parent="levelRing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 operation = 2
-height = 0.5
 smooth_faces = false
 
 [node name="testCam" type="Camera3D" parent="."]

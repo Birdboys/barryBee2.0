@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddn4r2cx0d5tp"]
+
+[ext_resource type="Script" path="res://Scripts/shadow_component.gd" id="1_ybuli"]
+[ext_resource type="Texture2D" uid="uid://br7imostortep" path="res://Assets/temp/temp_shadow.png" id="2_2knww"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q4rf4"]
+transparency = 1
+albedo_texture = ExtResource("2_2knww")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lr07l"]
+material = SubResource("StandardMaterial3D_q4rf4")
+
+[node name="shadowComponent" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5117, 0)
+script = ExtResource("1_ybuli")
+max_shadow_radius = 5.0
+casting_shadow = true
+
+[node name="shadowRay" type="RayCast3D" parent="."]
+target_position = Vector3(0, -25, 0)
+
+[node name="shadowSprite" type="MeshInstance3D" parent="."]
+top_level = true
+mesh = SubResource("PlaneMesh_lr07l")
+skeleton = NodePath("../shadowRay")

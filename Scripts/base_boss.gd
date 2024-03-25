@@ -4,12 +4,11 @@ extends Node3D
 @onready var pawRight := $bossPawRight
 @onready var bossAnim := $bossAnim
 @onready var bee_follow_speed := 50
-@onready var attacks = ['anticipation3']#['anticipation1','anticipation2','anticipation3','anticipation4','anticipation5']
-@onready var field_radius := 15.0
+@onready var attacks = ['anticipation1','anticipation2','anticipation3','anticipation4','anticipation5']
 @onready var attack_angle := 0.0
 @export var bee_angle := 0.0
 @export var bee_pos : Vector3
-
+var field_radius : float
 signal camera_trauma(trauma)
 
 func _ready():
@@ -35,44 +34,46 @@ func startAttack(attack: String):
 			var key_id_2 = attackAnim.track_find_key(track_id, 1)
 			var key_id_3 = attackAnim.track_find_key(track_id, 1.3)
 			var key_id_4 = attackAnim.track_find_key(track_id, 2)
-			var point1 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle-deg_to_rad(15)) * field_radius + Vector3.UP * 20
-			var point2 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle) * field_radius
+			var point1 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle-deg_to_rad(15)) * field_radius + Vector3.UP * 20 + (Vector3.UP * pawLeft.get_item_rect().size.y/2 * pawLeft.pixel_size)
+			var point2 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle-deg_to_rad(15)) * field_radius + (Vector3.UP * pawLeft.get_item_rect().size.y/2 * pawLeft.pixel_size)
 			attackAnim.track_set_key_value(track_id, key_id_1, to_local(point1))
 			attackAnim.track_set_key_value(track_id, key_id_2, to_local(point1))
 			attackAnim.track_set_key_value(track_id, key_id_3, to_local(point2))
 			attackAnim.track_set_key_value(track_id, key_id_4, to_local(point2))
+			
 		"attack2":
 			var track_id = attackAnim.find_track("bossPawRight:position", Animation.TYPE_VALUE)
 			var key_id_1 = attackAnim.track_find_key(track_id, 0.5)
 			var key_id_2 = attackAnim.track_find_key(track_id, 1)
 			var key_id_3 = attackAnim.track_find_key(track_id, 1.3)
 			var key_id_4 = attackAnim.track_find_key(track_id, 2)
-			var point1 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle+deg_to_rad(15)) * field_radius + Vector3.UP * 20
-			var point2 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle) * field_radius
+			var point1 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle+deg_to_rad(15)) * field_radius + Vector3.UP * 20 + (Vector3.UP * pawLeft.get_item_rect().size.y/2 * pawLeft.pixel_size)
+			var point2 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle+deg_to_rad(15)) * field_radius + (Vector3.UP * pawLeft.get_item_rect().size.y/2 * pawLeft.pixel_size)
 			attackAnim.track_set_key_value(track_id, key_id_1, to_local(point1))
 			attackAnim.track_set_key_value(track_id, key_id_2, to_local(point1))
 			attackAnim.track_set_key_value(track_id, key_id_3, to_local(point2))
 			attackAnim.track_set_key_value(track_id, key_id_4, to_local(point2))
+			print(pawLeft.get_item_rect())
 		"attack3":
 			var track_id = attackAnim.find_track("bossPawRight:position", Animation.TYPE_VALUE)
 			var key_id_1 = attackAnim.track_find_key(track_id, 0.5)
 			var key_id_2 = attackAnim.track_find_key(track_id, 1)
 			var key_id_3 = attackAnim.track_find_key(track_id, 1.3)
 			var key_id_4 = attackAnim.track_find_key(track_id, 2)
-			var point1 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle+deg_to_rad(25)) * field_radius + Vector3.UP * 20
-			var point2 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle+deg_to_rad(25)) * field_radius
+			var point1 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle+deg_to_rad(25)) * field_radius + Vector3.UP * 20 + (Vector3.UP * pawLeft.get_item_rect().size.y/2 * pawLeft.pixel_size)
+			var point2 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle+deg_to_rad(25)) * field_radius + (Vector3.UP * pawLeft.get_item_rect().size.y/2 * pawLeft.pixel_size)
 			attackAnim.track_set_key_value(track_id, key_id_1, to_local(point1))
 			attackAnim.track_set_key_value(track_id, key_id_2, to_local(point1))
 			attackAnim.track_set_key_value(track_id, key_id_3, to_local(point2))
 			attackAnim.track_set_key_value(track_id, key_id_4, to_local(point2))
-			
+			print(pawLeft.get_item_rect())
 			track_id = attackAnim.find_track("bossPawLeft:position", Animation.TYPE_VALUE)
 			key_id_1 = attackAnim.track_find_key(track_id, 0.5)
 			key_id_2 = attackAnim.track_find_key(track_id, 1)
 			key_id_3 = attackAnim.track_find_key(track_id, 1.3)
 			key_id_4 = attackAnim.track_find_key(track_id, 2)
-			point1 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle-deg_to_rad(25)) * field_radius + Vector3.UP * 20
-			point2 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle-deg_to_rad(25)) * field_radius
+			point1 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle-deg_to_rad(25)) * field_radius + Vector3.UP * 20 + (Vector3.UP * pawLeft.get_item_rect().size.y/2 * pawLeft.pixel_size)
+			point2 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle-deg_to_rad(25)) * field_radius + (Vector3.UP * pawLeft.get_item_rect().size.y/2 * pawLeft.pixel_size)
 			attackAnim.track_set_key_value(track_id, key_id_1, to_local(point1))
 			attackAnim.track_set_key_value(track_id, key_id_2, to_local(point1))
 			attackAnim.track_set_key_value(track_id, key_id_3, to_local(point2))
@@ -83,9 +84,9 @@ func startAttack(attack: String):
 			var key_id_2 = attackAnim.track_find_key(track_id, 1.5)
 			var key_id_3 = attackAnim.track_find_key(track_id, 2)
 			var key_id_4 = attackAnim.track_find_key(track_id, 2.5)
-			var point1 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle-deg_to_rad(45)) * field_radius
-			var point2 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle) * field_radius
-			var point3 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle+deg_to_rad(45)) * field_radius
+			var point1 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle-deg_to_rad(45)) * field_radius + (Vector3.UP * pawLeft.get_item_rect().size.y/2 * pawLeft.pixel_size)
+			var point2 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle) * field_radius + (Vector3.UP * pawLeft.get_item_rect().size.y/2 * pawLeft.pixel_size)
+			var point3 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle+deg_to_rad(45)) * field_radius + (Vector3.UP * pawLeft.get_item_rect().size.y/2 * pawLeft.pixel_size)
 			attackAnim.track_set_key_value(track_id, key_id_1, to_local(point1))
 			attackAnim.track_set_key_value(track_id, key_id_2, to_local(point1))
 			attackAnim.track_set_key_value(track_id, key_id_3, to_local(point2))
@@ -96,9 +97,9 @@ func startAttack(attack: String):
 			var key_id_2 = attackAnim.track_find_key(track_id, 1.5)
 			var key_id_3 = attackAnim.track_find_key(track_id, 2)
 			var key_id_4 = attackAnim.track_find_key(track_id, 2.5)
-			var point1 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle+deg_to_rad(45)) * field_radius
-			var point2 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle) * field_radius
-			var point3 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle-deg_to_rad(45)) * field_radius
+			var point1 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle+deg_to_rad(45)) * field_radius + (Vector3.UP * pawLeft.get_item_rect().size.y/2 * pawLeft.pixel_size)
+			var point2 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle) * field_radius + (Vector3.UP * pawLeft.get_item_rect().size.y/2 * pawLeft.pixel_size)
+			var point3 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle-deg_to_rad(45)) * field_radius + (Vector3.UP * pawLeft.get_item_rect().size.y/2 * pawLeft.pixel_size)
 			attackAnim.track_set_key_value(track_id, key_id_1, to_local(point1))
 			attackAnim.track_set_key_value(track_id, key_id_2, to_local(point1))
 			attackAnim.track_set_key_value(track_id, key_id_3, to_local(point2))

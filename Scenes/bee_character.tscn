@@ -71,7 +71,6 @@ size = Vector2(720, 426)
 [node name="beeCharacter" type="CharacterBody3D"]
 collision_layer = 0
 script = ExtResource("1_w76f5")
-bee_air_speed = -3.0
 
 [node name="beeSprite" type="Sprite3D" parent="."]
 billboard = 1
@@ -95,7 +94,9 @@ libraries = {
 [node name="beeCamArm" type="Node3D" parent="."]
 
 [node name="beeCam" type="Camera3D" parent="beeCamArm"]
+keep_aspect = 0
 current = true
+near = 0.01
 script = ExtResource("3_8l30g")
 
 [node name="beeUI" type="CanvasLayer" parent="."]
@@ -116,7 +117,7 @@ theme_override_constants/margin_bottom = 64
 [node name="UIBars" type="HBoxContainer" parent="beeUI/beeUIMargin"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_vertical = 0
 theme_override_constants/separation = -30
 
 [node name="pollenBar" type="TextureProgressBar" parent="beeUI/beeUIMargin/UIBars"]
