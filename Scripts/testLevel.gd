@@ -9,7 +9,7 @@ extends Node3D
 @onready var field_platform_length := 2.5
 @onready var fight_length := 45.0
 @onready var current_fight_progress := 0.0
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	setField(field_radius, field_segments, field_platform_length)
 	placeBee(0)

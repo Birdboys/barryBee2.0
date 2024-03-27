@@ -2,6 +2,9 @@ extends BeeState
 
 @onready var jump_boost := 5.0
 
+func enter():
+	bee.cameraTrauma(0.1)
+	
 func update(delta):
 	bee.updatePollen(bee.pollen_charge_rate*delta)
 	var inputs = getInputs()
@@ -15,4 +18,4 @@ func update(delta):
 			bee.bee_air_speed = (inputs.x * 1) + (inputs.z * -1)
 			bee.velocity.y = jump_boost
 			emit_signal("transitioned", self, "beeFlying")
-		
+

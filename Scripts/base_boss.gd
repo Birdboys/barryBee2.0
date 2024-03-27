@@ -24,19 +24,11 @@ signal change_progress(amount)
 signal boss_defeated
 func _ready():
 	stateMachine.initialize(self)
-	#bossAnim.play("idle")
 	bossAnim.speed_scale = 1.25
 	for hurtbox in hurtbox_list:
 		hurtbox.area_entered.connect(hurtTriggered)
 
-func attackInterrupt():
-	var current_attack = bossAnim.current_animation
-	if "attack" not in current_attack: return
-	if current_attack == finisher: get_tree().quit()
-	emit_signal("change_progress", 5.0)
-	#startRecovery(recovery_index[current_attack])
-	
-func cameraTruma(amount: float):
+func cameraTrauma(amount: float):
 	emit_signal("camera_trauma", amount)
 
 func hurtTriggered(area: Area3D):
@@ -44,7 +36,6 @@ func hurtTriggered(area: Area3D):
 
 func fightProgressDone():
 	fight_progress_done = true
-	#attacks = ["anticipation1", "anticipation2", "anticipation6"]
 
 func selectAttack():
 	attack_angle = bee_angle

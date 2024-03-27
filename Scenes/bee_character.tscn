@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://jxq0tqjk3anq"]
+[gd_scene load_steps=26 format=3 uid="uid://jxq0tqjk3anq"]
 
 [ext_resource type="Script" path="res://Scripts/bee_character.gd" id="1_w76f5"]
 [ext_resource type="Texture2D" uid="uid://dokb1ku6oidl3" path="res://icon.svg" id="2_5mbkc"]
@@ -66,6 +66,17 @@ _data = {
 "dash_right": SubResource("Animation_rm0ea")
 }
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_niisi"]
+noise_type = 3
+seed = 1
+frequency = 0.003
+fractal_gain = 0.75
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_eq1kq"]
+noise_type = 3
+seed = 1
+frequency = 0.003
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkel7"]
 size = Vector2(720, 426)
 
@@ -104,6 +115,8 @@ keep_aspect = 0
 current = true
 near = 0.01
 script = ExtResource("3_8l30g")
+rot_noise = SubResource("FastNoiseLite_niisi")
+trans_noise = SubResource("FastNoiseLite_eq1kq")
 
 [node name="beeUI" type="CanvasLayer" parent="."]
 
