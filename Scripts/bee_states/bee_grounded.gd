@@ -1,4 +1,4 @@
-extends State
+extends BeeState
 
 @onready var jump_boost := 5.0
 

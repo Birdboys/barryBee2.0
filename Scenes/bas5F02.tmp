@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bifsqvk80gj3y"]
+[gd_scene load_steps=32 format=3 uid="uid://bifsqvk80gj3y"]
 
 [ext_resource type="Script" path="res://Scripts/base_boss.gd" id="1_7d617"]
 [ext_resource type="Texture2D" uid="uid://bt51kb66eblb7" path="res://Assets/bears/temp_body.png" id="2_0vb11"]
@@ -9,8 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://cmvbwovybfgmc" path="res://Scenes/state_machine.tscn" id="7_bdae7"]
 [ext_resource type="Script" path="res://Scripts/boss_states/boss_idle.gd" id="8_7mgap"]
 [ext_resource type="Script" path="res://Scripts/boss_states/boss_anticipation.gd" id="9_5svuf"]
-[ext_resource type="Script" path="res://Scripts/boss_states/boss_attack.gd" id="10_ruf5o"]
-[ext_resource type="Script" path="res://Scripts/boss_states/boss_recovery.gd" id="11_vx543"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7twuj"]
 height = 6.9807
@@ -158,42 +156,6 @@ tracks/10/keys = {
 "update": 1,
 "values": [0]
 }
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("bossHead/biteHurtbox:monitoring")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("bossPawRight/pawRightHurtbox:monitoring")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("bossPawLeft/pawLeftHurtbox:monitoring")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_63gdp"]
 resource_name = "anticipation1"
@@ -209,6 +171,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(5.843, 6.471, 0.5), Vector3(5.843, 4.471, 0.5), Vector3(5.843, 6.471, 0.5), Vector3(5.843, 4.471, 0.5), Vector3(5.843, 6.471, 0.5)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["attack1"],
+"method": &"startAttack"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_lpreu"]
@@ -226,6 +202,20 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(-5.843, 6.471, 0.5), Vector3(-5.843, 4.471, 0.5), Vector3(-5.843, 6.471, 0.5), Vector3(-5.843, 4.471, 0.5), Vector3(-5.843, 6.471, 0.5)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["attack2"],
+"method": &"startAttack"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_1h64m"]
 resource_name = "anticipation3"
@@ -242,13 +232,27 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(-5.843, 6.471, 0.5), Vector3(-5.843, 4.471, 0.5), Vector3(-5.843, 6.471, 0.5), Vector3(-5.843, 4.471, 0.5), Vector3(-5.843, 6.471, 0.5)]
 }
-tracks/1/type = "value"
+tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("bossHead/bossEarLeft:position")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["attack3"],
+"method": &"startAttack"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bossHead/bossEarLeft:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
@@ -258,13 +262,27 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_6pgft"]
 resource_name = "anticipation4"
 step = 0.25
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("bossHead:rotation")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["attack4"],
+"method": &"startAttack"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bossHead:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
@@ -274,13 +292,27 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_0e1g6"]
 resource_name = "anticipation5"
 step = 0.25
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("bossHead:rotation")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["attack5"],
+"method": &"startAttack"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bossHead:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
@@ -291,13 +323,27 @@ tracks/0/keys = {
 resource_name = "anticipation6"
 length = 2.0
 step = 0.25
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("bossHead:rotation")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["attack6"],
+"method": &"startAttack"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bossHead:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
@@ -326,11 +372,14 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.3),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(1.3, 2),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [0.2],
 "method": &"cameraTruma"
+}, {
+"args": ["recovery1"],
+"method": &"startRecovery"
 }]
 }
 tracks/2/type = "value"
@@ -380,11 +429,14 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1.3),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(1.3, 2),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [0.2],
 "method": &"cameraTruma"
+}, {
+"args": ["recovery2"],
+"method": &"startRecovery"
 }]
 }
 tracks/1/type = "value"
@@ -446,11 +498,14 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1.3),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(1.3, 2),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [0.5],
 "method": &"cameraTruma"
+}, {
+"args": ["recovery3"],
+"method": &"startRecovery"
 }]
 }
 tracks/1/type = "value"
@@ -585,8 +640,8 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.5, 2, 2.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(1.5, 2, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
 "args": [0.3],
 "method": &"cameraTruma"
@@ -596,6 +651,9 @@ tracks/2/keys = {
 }, {
 "args": [0.3],
 "method": &"cameraTruma"
+}, {
+"args": ["recovery1"],
+"method": &"startRecovery"
 }]
 }
 tracks/3/type = "value"
@@ -622,9 +680,12 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["recovery2"],
+"method": &"startRecovery"
+}]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -697,9 +758,12 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["recovery4"],
+"method": &"startRecovery"
+}]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -769,71 +833,19 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(11.556, 5.353, -2), Vector3(11.556, 5.353, -2)]
 }
-tracks/1/type = "value"
+tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("bossPawLeft:billboard")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_vonac"]
-resource_name = "recovery2"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("bossPawRight:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-11.5562, 5.35262, -2), Vector3(-11.5562, 5.35262, -2)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("bossPawRight:billboard")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_pbbb8"]
-resource_name = "recovery3"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("bossPawRight:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-11.5562, 5.35262, -2), Vector3(-11.5562, 5.35262, -2)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("bossPawRight:billboard")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"values": [{
+"args": [],
+"method": &"recovered"
+}]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -847,13 +859,107 @@ tracks/2/keys = {
 "update": 1,
 "values": [0]
 }
+
+[sub_resource type="Animation" id="Animation_vonac"]
+resource_name = "recovery2"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"recovered"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bossPawRight:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-11.5562, 5.35262, -2), Vector3(-11.5562, 5.35262, -2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bossPawRight:billboard")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_pbbb8"]
+resource_name = "recovery3"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"recovered"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bossPawRight:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-11.5562, 5.35262, -2), Vector3(-11.5562, 5.35262, -2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bossPawRight:billboard")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("bossPawLeft:position")
+tracks/3/path = NodePath("bossPawLeft:billboard")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("bossPawLeft:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
@@ -862,25 +968,39 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_r1usr"]
 resource_name = "recovery4"
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("bossHead:position")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"recovered"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bossHead:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 17.716, -1), Vector3(0, 17.716, -1)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("bossHead:billboard")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bossHead:billboard")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -909,10 +1029,8 @@ _data = {
 "recovery4": SubResource("Animation_r1usr")
 }
 
-[node name="baseBoss" type="Node3D" node_paths=PackedStringArray("hurtbox_list", "hitbox_list")]
+[node name="baseBoss" type="Node3D"]
 script = ExtResource("1_7d617")
-hurtbox_list = [NodePath("bossHead/biteHurtbox"), NodePath("bossPawRight/pawRightHurtbox"), NodePath("bossPawLeft/pawLeftHurtbox")]
-hitbox_list = [NodePath("bossPawLeft/pawLeftHitbox"), NodePath("bossPawRight/pawRightHitbox"), NodePath("bossHead/biteHitbox")]
 
 [node name="bossBody" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -945,6 +1063,7 @@ texture = ExtResource("5_80r3t")
 [node name="biteHitbox" type="Area3D" parent="bossHead"]
 collision_layer = 16
 collision_mask = 6
+monitorable = false
 
 [node name="biteHitoxCol" type="CollisionShape3D" parent="bossHead/biteHitbox"]
 transform = Transform3D(0.999982, 0, 0.00588172, 0, 0.999999, 0, -0.00588173, 0, 0.999983, 0, -3.54575, 0)
@@ -953,7 +1072,6 @@ shape = SubResource("CylinderShape3D_7twuj")
 [node name="biteHurtbox" type="Area3D" parent="bossHead" groups=["boss_hurtbox"]]
 collision_layer = 8
 collision_mask = 4
-monitoring = false
 
 [node name="biteHurtboxCol" type="CollisionShape3D" parent="bossHead/biteHurtbox"]
 transform = Transform3D(0.999982, 0, 0.00588172, 0, 0.999999, 0, -0.00588173, 0, 0.999983, 0, -3.54575, 0)
@@ -1013,7 +1131,6 @@ shape = SubResource("CylinderShape3D_h55l4")
 [node name="pawLeftHurtbox" type="Area3D" parent="bossPawLeft" groups=["boss_hurtbox"]]
 collision_layer = 8
 collision_mask = 4
-monitoring = false
 
 [node name="pawLeftHurtboxCol" type="CollisionShape3D" parent="bossPawLeft/pawLeftHurtbox"]
 transform = Transform3D(0.999983, 0, 0.00588173, 0, 1, 0, -0.00588173, 0, 0.999983, -0.0550003, 0, 0.0142231)
@@ -1023,6 +1140,10 @@ shape = SubResource("CylinderShape3D_3bhsw")
 libraries = {
 "": SubResource("AnimationLibrary_8syek")
 }
+
+[node name="attackTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [node name="idleTimer" type="Timer" parent="."]
 one_shot = true
@@ -1038,10 +1159,4 @@ idleTimer = NodePath("../../idleTimer")
 script = ExtResource("9_5svuf")
 bossAnim = NodePath("../../bossAnim")
 
-[node name="bossAttack" type="Node" parent="stateMachine" node_paths=PackedStringArray("bossAnim")]
-script = ExtResource("10_ruf5o")
-bossAnim = NodePath("../../bossAnim")
-
-[node name="bossRecovery" type="Node" parent="stateMachine" node_paths=PackedStringArray("bossAnim")]
-script = ExtResource("11_vx543")
-bossAnim = NodePath("../../bossAnim")
+[connection signal="timeout" from="attackTimer" to="." method="_on_attack_timer_timeout"]

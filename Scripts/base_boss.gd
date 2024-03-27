@@ -1,38 +1,56 @@
 extends Node3D
-@onready var attackTimer := $attackTimer
+class_name Boss
 @onready var pawLeft := $bossPawLeft
 @onready var pawRight := $bossPawRight
 @onready var bossHead := $bossHead
 @onready var bossAnim := $bossAnim
+@onready var stateMachine := $stateMachine
 @onready var bee_follow_speed := 50
-@onready var attacks = ['anticipation1','anticipation2']#['anticipation1','anticipation2','anticipation3','anticipation4','anticipation5']
+@onready var attacks = ['attack1','attack2','attack3','attack4','attack5']
 @onready var attack_angle := 0.0
 @onready var recovery_index := {'attack1':'recovery1','attack2':'recovery2','attack3':'recovery3',
 'attack4':'recovery1','attack5':'recovery2','attack6':'recovery4'}
+@onready var anticipation_index := {'attack1':'anticipation1','attack2':'anticipation2','attack3':'anticipation3','attack4':'anticipation4','attack5':'anticipation5','attack6':'anticipation6'}
 @onready var finisher := "attack6"
 @onready var fight_progress_done := false
+@onready var current_attack : String
 @export var bee_angle := 0.0
 @export var bee_pos : Vector3
+@export var hurtbox_list : Array[Area3D]
+@export var hitbox_list : Array[Area3D]
 var field_radius : float
 signal camera_trauma(trauma)
 signal change_progress(amount)
+signal boss_defeated
 func _ready():
-	bossAnim.play("idle")
+	stateMachine.initialize(self)
+	#bossAnim.play("idle")
 	bossAnim.speed_scale = 1.25
-	for hurtbox : Area3D in get_tree().get_nodes_in_group("boss_hurtbox"):
+	for hurtbox in hurtbox_list:
 		hurtbox.area_entered.connect(hurtTriggered)
+
+func attackInterrupt():
+	var current_attack = bossAnim.current_animation
+	if "attack" not in current_attack: return
+	if current_attack == finisher: get_tree().quit()
+	emit_signal("change_progress", 5.0)
+	#startRecovery(recovery_index[current_attack])
 	
-func _process(delta):
-	if bossAnim.current_animation == "idle":
-		if rad_to_deg(abs(angle_difference(rotation.y, bee_angle))) > 30:
-			rotation.y = lerp_angle(rotation.y, bee_angle - deg_to_rad(30) * sign(angle_difference(rotation.y, bee_angle)), 0.02)
+func cameraTruma(amount: float):
+	emit_signal("camera_trauma", amount)
 
-func _on_attack_timer_timeout():
+func hurtTriggered(area: Area3D):
+	stateMachine.current_state.handleBeeInterrupt()
+
+func fightProgressDone():
+	fight_progress_done = true
+	#attacks = ["anticipation1", "anticipation2", "anticipation6"]
+
+func selectAttack():
 	attack_angle = bee_angle
-	var current_attack = attacks.pick_random()
-	bossAnim.play(current_attack)
+	return attacks.pick_random()
 
-func startAttack(attack: String):
+func prepareAttackAnimation(attack):
 	var attackAnim = bossAnim.get_animation(attack) as Animation
 	match attack:
 		"attack1":
@@ -118,11 +136,10 @@ func startAttack(attack: String):
 			var point1 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle) * field_radius * 0.9 + (Vector3.UP * bossHead.get_item_rect().size.y/2 * pawLeft.pixel_size)
 			attackAnim.track_set_key_value(track_id, key_id_1, to_local(point1))
 			attackAnim.track_set_key_value(track_id, key_id_2, to_local(point1))
-	bossAnim.play(attack)
 
-func startRecovery(recovery: String):
-	var recoveryAnim = bossAnim.get_animation(recovery) as Animation
-	match recovery:
+func prepareRecoveryAnimation(anim):
+	var recoveryAnim = bossAnim.get_animation(anim) as Animation
+	match anim:
 		'recovery1':
 			var track_id = recoveryAnim.find_track("bossPawLeft:position", Animation.TYPE_VALUE)
 			var key_id_1 = recoveryAnim.track_find_key(track_id, 0.5)
@@ -143,27 +160,11 @@ func startRecovery(recovery: String):
 			var track_id = recoveryAnim.find_track("bossHead:position", Animation.TYPE_VALUE)
 			var key_id_1 = recoveryAnim.track_find_key(track_id, 0.0)
 			recoveryAnim.track_set_key_value(track_id, key_id_1, bossHead.position)
-	bossAnim.play(recovery)
-	
-func recovered():
-	attackTimer.start(randf_range(1,3))
-	bossAnim.play("idle")
 
-func attackInterrupt():
-	var current_attack = bossAnim.current_animation
-	if "attack" not in current_attack: return
-	if current_attack == finisher: get_tree().quit()
-	emit_signal("change_progress", 5.0)
-	startRecovery(recovery_index[current_attack])
-	
-func cameraTruma(amount: float):
-	emit_signal("camera_trauma", amount)
+func resetHurtbox():
+	for box in hurtbox_list:
+		box.set_deferred("monitoring",false)
 
-func hurtTriggered(area: Area3D):
-	print("OH MY GOD IVE BEEN STUNG HOLY SHIT")
-	print(area.get_parent().name)
-	attackInterrupt()
-
-func fightProgressDone():
-	fight_progress_done = true
-	attacks = ["anticipation1", "anticipation2", "anticipation6"]
+func resetHitbox():
+	for box in hitbox_list:
+		box.set_deferred("monitorable",false)

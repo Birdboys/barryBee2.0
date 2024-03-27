@@ -10,7 +10,10 @@ func initialize(parent):
 		if child is State:
 			states[child.name.to_lower()] = child
 			child.transitioned.connect(on_state_transition)
-			child.bee = parent
+			if get_parent() is Bee:
+				child.bee = parent
+			elif get_parent() is Boss:
+				child.boss = parent
 
 	if initial_state:
 		initial_state.enter()

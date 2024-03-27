@@ -1,4 +1,4 @@
-extends State
+extends BeeState
 
 func update(delta):
 	var inputs = getInputs()

@@ -1,4 +1,4 @@
-extends State
+extends BeeState
 
 func enter():
 	bee.velocity = Vector3(0,-bee.pollen_burst_thrust, 0)
