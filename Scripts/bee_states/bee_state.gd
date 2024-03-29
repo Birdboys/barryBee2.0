@@ -14,3 +14,6 @@ func handleDoubleTap(new_time):
 		double_tap = true
 	double_tap_timer = new_time
 	return double_tap
+
+func rotateSprite(lean_dir, mod, delta):
+	bee.beeSprite.rotation.z = move_toward(bee.beeSprite.rotation.z, lean_dir*bee.max_lean*mod, bee.lean_speed*delta)

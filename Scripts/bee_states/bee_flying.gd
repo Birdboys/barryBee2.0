@@ -2,6 +2,7 @@ extends BeeState
 
 func update(delta):
 	var inputs = getInputs()
+	rotateSprite((inputs.x * -1) + (inputs.z * 1),1.5,delta)
 	
 	if Input.is_action_just_pressed("fly") and handleDoubleTap(Time.get_ticks_msec()):
 		if bee.pollen_val > 0:
@@ -25,7 +26,13 @@ func update(delta):
 	if inputs.y:
 		if bee.pollen_val > 0:
 			bee.velocity.y += bee.pollen_lift * delta
+			bee.setPollenEmission(true)
+		else:
+			bee.setPollenEmission(false)
 		bee.updatePollen(-bee.pollen_use_rate*delta)
+	else:
+		bee.setPollenEmission(false)
+		
 		
 	bee.bee_air_speed = clamp(bee.bee_air_speed, -bee.bee_air_max_speed, bee.bee_air_max_speed)
 	bee.velocity.y -= bee.gravity * delta

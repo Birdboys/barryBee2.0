@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://jllmtcbv228d"]
+[gd_scene load_steps=14 format=3 uid="uid://jllmtcbv228d"]
 
 [ext_resource type="Script" path="res://Scripts/testLevel.gd" id="1_o1vrm"]
 [ext_resource type="PackedScene" uid="uid://jxq0tqjk3anq" path="res://Scenes/bee_character.tscn" id="2_yhk1x"]
 [ext_resource type="PackedScene" uid="uid://bifsqvk80gj3y" path="res://Scenes/base_boss.tscn" id="3_ok2be"]
+[ext_resource type="Texture2D" uid="uid://cgf8ov0ppears" path="res://Assets/temp/test_grass.svg" id="4_qqyeg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wgv40"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -16,6 +17,46 @@ background_mode = 2
 sky = SubResource("Sky_k3y21")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvf7m"]
+albedo_color = Color(0.266667, 0.439216, 0.176471, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vq6le"]
+load_path = "res://.godot/imported/test_grass.svg-68bfe7b14500081f8388d6b50feab785.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xocq"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = SubResource("CompressedTexture2D_vq6le")
+uv1_scale = Vector3(0.245, 0.245, 0.245)
+uv1_offset = Vector3(0, 0.49, 0)
+uv1_triplanar = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jux0y"]
+material = SubResource("StandardMaterial3D_6xocq")
+top_radius = 4.0
+bottom_radius = 4.0
+height = 1.5
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwc5o"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("4_qqyeg")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_offset = Vector3(0, 0.49, 0)
+uv1_triplanar = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_f1wxd"]
+material = SubResource("StandardMaterial3D_cwc5o")
+flip_faces = true
+cap_top = false
+cap_bottom = false
 
 [node name="testLevel" type="Node3D"]
 script = ExtResource("1_o1vrm")
@@ -32,12 +73,11 @@ use_collision = true
 
 [node name="platform" type="CSGCylinder3D" parent="levelRing"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-smooth_faces = false
+material = SubResource("StandardMaterial3D_wvf7m")
 
 [node name="hole" type="CSGCylinder3D" parent="levelRing"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 operation = 2
-smooth_faces = false
 
 [node name="testCam" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 10, 20)
@@ -48,5 +88,15 @@ transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 
 
 [node name="fightTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="frontRing" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_jux0y")
+
+[node name="backRing" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_f1wxd")
 
 [connection signal="timeout" from="fightTimer" to="." method="_on_fight_timer_timeout"]

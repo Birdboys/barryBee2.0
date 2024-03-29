@@ -4,8 +4,10 @@ extends Node3D
 @onready var bee := $beeCharacter
 @onready var boss := $baseBoss
 @onready var fightTimer := $fightTimer
+@onready var frontRing := $frontRing
+@onready var backRing := $backRing
 @onready var field_radius := 20.0
-@onready var field_segments := 24
+@onready var field_segments := 36
 @onready var field_platform_length := 2.5
 @onready var fight_length := 45.0
 @onready var current_fight_progress := 0.0
@@ -27,10 +29,14 @@ func _process(delta):
 	if Input.is_action_just_pressed("cheat"): increaseProgress(5)
 	
 func setField(radius, segments, platform_length=1):
-	fieldPlatform.radius = radius + platform_length/2.0
+	fieldPlatform.radius = radius + platform_length/2.0 + 1
 	fieldPlatform.sides = segments
 	fieldHole.radius = radius - platform_length/2.0
 	fieldHole.sides = segments
+	frontRing.mesh.top_radius = field_radius+field_platform_length/2.0 + 1
+	frontRing.mesh.bottom_radius = field_radius+field_platform_length/2.0 + 1
+	backRing.mesh.top_radius = field_radius-field_platform_length/2.0
+	backRing.mesh.bottom_radius = field_radius-field_platform_length/2.0
 	
 func placeBee(deg):
 	bee.position = Vector3.FORWARD.rotated(Vector3.UP, deg_to_rad(deg)) * field_radius

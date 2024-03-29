@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://jxq0tqjk3anq"]
+[gd_scene load_steps=29 format=3 uid="uid://jxq0tqjk3anq"]
 
 [ext_resource type="Script" path="res://Scripts/bee_character.gd" id="1_w76f5"]
 [ext_resource type="Texture2D" uid="uid://basj54aj0r1l7" path="res://Assets/bee/bee_back_sprite.svg" id="2_afy1s"]
@@ -8,8 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://ng3agfk2opgd" path="res://Assets/temp/temp_pollen_bg.png" id="4_nibth"]
 [ext_resource type="PackedScene" uid="uid://ddn4r2cx0d5tp" path="res://Scenes/shadow_component.tscn" id="4_y8xwk"]
 [ext_resource type="Texture2D" uid="uid://dvgbcyx3slhhr" path="res://Assets/temp/temp_pollen_front.png" id="5_7hu6r"]
-[ext_resource type="PackedScene" uid="uid://fk7uy8bynvis" path="res://Scenes/pollen_burst_particle.tscn" id="5_7oirw"]
-[ext_resource type="PackedScene" uid="uid://dmhs6l6hh552y" path="res://Scenes/pollen_output_particle.tscn" id="5_n2yry"]
 [ext_resource type="Texture2D" uid="uid://dstr8323ogqpf" path="res://Assets/temp/temp_pollen_fill.png" id="6_2qol0"]
 [ext_resource type="Texture2D" uid="uid://cyqfsco4u2u61" path="res://Assets/temp/temp_progress_bg.png" id="7_fuoxu"]
 [ext_resource type="Texture2D" uid="uid://ck2jkgqvtx3r7" path="res://Assets/temp/temp_progress_front.png" id="8_xkegg"]
@@ -19,12 +17,6 @@
 [ext_resource type="Script" path="res://Scripts/bee_states/bee_flying.gd" id="12_i2suy"]
 [ext_resource type="Script" path="res://Scripts/bee_states/bee_slamming.gd" id="13_4omoj"]
 [ext_resource type="Script" path="res://Scripts/bee_states/bee_dashing.gd" id="14_252b0"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3r5p2"]
-render_priority = 0
-shader = ExtResource("3_dve1b")
-shader_parameter/progress = 1.0
-shader_parameter/texture_albedo = ExtResource("4_d4emq")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1d5xi"]
 radius = 1.30285
@@ -38,7 +30,7 @@ length = 0.001
 [sub_resource type="Animation" id="Animation_m2xhm"]
 resource_name = "dash_left"
 length = 0.15
-step = 0.01
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -94,6 +86,12 @@ size = Vector2(720, 426)
 height = 1.0
 radius = 0.25
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3r5p2"]
+render_priority = 0
+shader = ExtResource("3_dve1b")
+shader_parameter/progress = 1.0
+shader_parameter/texture_albedo = ExtResource("4_d4emq")
+
 [node name="beeCharacter" type="CharacterBody3D"]
 collision_layer = 0
 script = ExtResource("1_w76f5")
@@ -102,31 +100,6 @@ bee_air_speed = 3.0
 [node name="beeSprite" type="Sprite3D" parent="."]
 texture_filter = 0
 texture = ExtResource("2_afy1s")
-
-[node name="beePollenSprite" type="Sprite3D" parent="beeSprite"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0146891, -0.001)
-visible = false
-material_override = SubResource("ShaderMaterial_3r5p2")
-texture_filter = 0
-texture = ExtResource("4_d4emq")
-
-[node name="pollenBurstEmitters" type="Node3D" parent="beeSprite"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
-
-[node name="pollenBurstParticle" parent="beeSprite/pollenBurstEmitters" instance=ExtResource("5_7oirw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.435688, -0.628636, 0)
-
-[node name="pollenBurstParticle2" parent="beeSprite/pollenBurstEmitters" instance=ExtResource("5_7oirw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.431129, -0.628636, 0)
-
-[node name="pollenEmitters" type="Node3D" parent="beeSprite"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-
-[node name="pollenOutputParticle" parent="beeSprite/pollenEmitters" instance=ExtResource("5_n2yry")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.435688, -0.628636, 0)
-
-[node name="pollenOutputParticle2" parent="beeSprite/pollenEmitters" instance=ExtResource("5_n2yry")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.431129, -0.628636, 0)
 
 [node name="beeCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_1d5xi")
@@ -247,7 +220,9 @@ script = ExtResource("13_4omoj")
 script = ExtResource("14_252b0")
 
 [node name="shadowComponent" parent="." instance=ExtResource("4_y8xwk")]
+visible = false
 max_shadow_radius = 1.0
+casting_shadow = false
 scale_size = true
 
 [node name="beeStinger" type="Area3D" parent="."]
@@ -258,6 +233,13 @@ monitorable = false
 [node name="beeStingerCol" type="CollisionShape3D" parent="beeStinger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("CylinderShape3D_8tnka")
+
+[node name="beePollenSprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0146891, -0.001)
+visible = false
+material_override = SubResource("ShaderMaterial_3r5p2")
+texture_filter = 0
+texture = ExtResource("4_d4emq")
 
 [connection signal="area_entered" from="beeHurtbox" to="." method="_on_bee_hurtbox_area_entered"]
 [connection signal="animation_finished" from="beeAnim" to="stateMachine/beeDashing" method="_on_bee_anim_animation_finished"]

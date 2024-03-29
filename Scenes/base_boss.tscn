@@ -588,19 +588,19 @@ tracks/2/keys = {
 "times": PackedFloat32Array(1.5, 1.75, 2, 2.25, 2.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "values": [{
-"args": [0.1],
+"args": [0.175],
 "method": &"cameraTrauma"
 }, {
-"args": [0.1],
+"args": [0.175],
 "method": &"cameraTrauma"
 }, {
-"args": [0.1],
+"args": [0.175],
 "method": &"cameraTrauma"
 }, {
-"args": [0.1],
+"args": [0.175],
 "method": &"cameraTrauma"
 }, {
-"args": [0.1],
+"args": [0.175],
 "method": &"cameraTrauma"
 }]
 }
@@ -628,9 +628,24 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
+"times": PackedFloat32Array(1.5, 1.75, 2, 2.25, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"values": [{
+"args": [0.175],
+"method": &"cameraTrauma"
+}, {
+"args": [0.175],
+"method": &"cameraTrauma"
+}, {
+"args": [0.175],
+"method": &"cameraTrauma"
+}, {
+"args": [0.175],
+"method": &"cameraTrauma"
+}, {
+"args": [0.175],
+"method": &"cameraTrauma"
+}]
 }
 tracks/1/type = "value"
 tracks/1/imported = false

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://fk7uy8bynvis"]
+
+[ext_resource type="Texture2D" uid="uid://i14lsetyattn" path="res://Assets/temp/pollen_output_particle.svg" id="1_pcfm4"]
+[ext_resource type="Script" path="res://Scripts/pollen_burst_particle.gd" id="2_lf06c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v4nd2"]
+transparency = 1
+albedo_texture = ExtResource("1_pcfm4")
+disable_receive_shadows = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jcm84"]
+material = SubResource("StandardMaterial3D_v4nd2")
+size = Vector2(0.75, 0.75)
+orientation = 2
+
+[node name="pollenBurstParticle" type="CPUParticles3D"]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.85
+draw_order = 2
+mesh = SubResource("PlaneMesh_jcm84")
+particle_flag_rotate_y = true
+direction = Vector3(0, -1, 0)
+gravity = Vector3(0, -5, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+scale_amount_min = 0.5
+script = ExtResource("2_lf06c")

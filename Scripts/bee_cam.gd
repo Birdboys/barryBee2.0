@@ -11,7 +11,6 @@ func _ready():
 	trans_noise.seed = 2
 	
 func _process(delta):
-	print(rot_noise.get_noise_2d(Time.get_ticks_msec(),0))
 	trauma -= trauma_decrease_rate * delta
 	trauma = max(0, trauma)
 	shake(delta)

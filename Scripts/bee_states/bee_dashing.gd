@@ -1,15 +1,21 @@
 extends BeeState
 @onready var dash_cooldown := 1.0
-
+var dash_dir : int
 func enter():
-	if Input.is_action_pressed("left"): bee.beeAnim.play("dash_left")
-	elif Input.is_action_pressed("right"): bee.beeAnim.play("dash_right")
+	if Input.is_action_pressed("left"): 
+		bee.beeAnim.play("dash_left")
+		dash_dir = -1
+	elif Input.is_action_pressed("right"): 
+		bee.beeAnim.play("dash_right")
+		dash_dir = 1
 	bee.pollen_dash_flag = false
 	bee.velocity.y = 0
+	bee.setPollenBurst(12, Vector3.LEFT * dash_dir)
 	
 func update(delta):
 	bee.position = bee.position.rotated(Vector3.UP, -bee.bee_air_speed*delta)
-		
+	rotateSprite(dash_dir,1.5,delta)
+	
 func exit():
 	setDashTimer()
 

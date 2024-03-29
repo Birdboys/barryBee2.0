@@ -19,14 +19,21 @@ class_name Bee
 @onready var pollen_burst_thrust := 75.0
 @onready var double_tap_timer := 0.0
 @onready var double_tap_sensitivity := 0.2
+@onready var cam_move_speed := 10.0
+@onready var lean_speed := 3.0
+@onready var max_lean := deg_to_rad(10)
 @onready var cam := $beeCamArm/beeCam
 @onready var camArm := $beeCamArm
+@onready var beeSprite := $beeSprite
+@onready var beePollenSprite := $beeSprite/beePollenSprite
 @onready var pollenBar := $beeUI/beeUIMargin/UIBars/pollenBar
 @onready var progressBar := $beeUI/beeUIMargin/UIBars/progressBar
 @onready var beeAnim := $beeAnim
 @onready var stateMachine := $stateMachine
 @onready var mobileButtons := $beeUI/mobileButtons
 @onready var fpsLabel := $beeUI/beeUIMargin/fpsLabel
+@onready var pollenEmitters := $beeSprite/pollenEmitters
+@onready var pollenBurstEmitters := $beeSprite/pollenBurstEmitters
 @onready var stinger := $beeStinger as Area3D
 
 var bee_speed : float
@@ -41,18 +48,19 @@ func _ready():
 	initializeMobileButtons()
 	
 func _process(delta):
-	moveCamera()
+	moveCamera(delta)
+	beeSprite.rotation.y = getAngle()
 	fpsLabel.text = "FPS:%s" % int(Engine.get_frames_per_second())
-
 func updatePollen(amount):
 	pollen_val += amount
 	pollen_val = clamp(pollen_val, 0, 100)
 	pollenBar.value = pollen_val
 	
-func moveCamera():
+func moveCamera(delta):
 	var cam_angle = Vector3.FORWARD.signed_angle_to(Vector3(camArm.position.x,0,camArm.position.z), Vector3.UP)
 	var new_angle = lerp_angle(cam_angle, getAngle(), 0.05)
-	camArm.position = cam_offset.rotated(Vector3.UP, new_angle) - Vector3(0, position.y, 0)
+	camArm.position = camArm.position.move_toward(cam_offset.rotated(Vector3.UP, new_angle) - Vector3(0, position.y, 0), delta*cam_move_speed)
+	camArm.position.y = cam_offset.y-position.y
 	camArm.look_at(Vector3(0, cam_offset.y, 0))
 	
 func getAngle():
@@ -77,9 +85,19 @@ func initializeMobileButtons():
 func cameraTrauma(trauma):
 	cam.changeTrauma(trauma)
 
+func setPollenEmission(val:bool):
+	for child in pollenEmitters.get_children():
+		if child is CPUParticles3D: 
+			child.emitting = val
+		
 func setStats(rad : float):
 	field_radius = rad
 	field_height = 10
 	bee_speed = 7.5/rad
 	bee_air_max_speed = 1.5 * bee_speed
 	cam_offset = Vector3(0, 8, -0.6 * rad)
+
+func setPollenBurst(am, dir):
+	for child in pollenBurstEmitters.get_children():
+		if child is CPUParticles3D:
+			child.burst(am, dir)

@@ -8,6 +8,7 @@ func enter():
 func update(delta):
 	bee.updatePollen(bee.pollen_charge_rate*delta)
 	var inputs = getInputs()
+	rotateSprite((inputs.x * -1) + (inputs.z * 1),1.0,delta)
 	if inputs.x:
 		bee.position = bee.position.rotated(Vector3.UP, -bee.bee_speed*delta)
 	if inputs.z:
