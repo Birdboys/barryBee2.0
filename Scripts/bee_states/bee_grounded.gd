@@ -3,7 +3,6 @@ extends BeeState
 @onready var jump_boost := 5.0
 
 func enter():
-	bee.cameraTrauma(0.1)
 	bee.setPollenEmission(false)
 	
 func update(delta):

@@ -3,9 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://i14lsetyattn" path="res://Assets/temp/pollen_output_particle.svg" id="1_ssitd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v4nd2"]
-transparency = 1
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
 shading_mode = 0
 albedo_texture = ExtResource("1_ssitd")
+texture_filter = 1
 disable_receive_shadows = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jcm84"]

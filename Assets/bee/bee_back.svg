@@ -9,7 +9,7 @@
    id="svg1"
    sodipodi:docname="bee_back.svg"
    inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
-   inkscape:export-filename="bee_pollen.png"
+   inkscape:export-filename="bee_back_sprite.svg"
    inkscape:export-xdpi="327.34271"
    inkscape:export-ydpi="327.34271"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -34,7 +34,7 @@
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer6" />
+     inkscape:current-layer="layer2" />
   <defs
      id="defs1" />
   <g
@@ -57,16 +57,16 @@
        id="layer3"
        inkscape:label="helmet"
        style="display:inline;fill:#734c44"
-       transform="translate(-2.675654e-8,4.6199368)">
+       transform="translate(-2.675654e-8,2.2451401)">
       <rect
-         style="fill:#a57855;fill-opacity:1;stroke:#14233a;stroke-width:1.67774;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
+         style="fill:#a57855;fill-opacity:1;stroke:#14233a;stroke-width:3.35547;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
          id="rect10"
          width="15.047043"
          height="12.360072"
          x="26.343145"
          y="20.062725" />
       <rect
-         style="fill:#7a5859;fill-opacity:1;stroke:#14233a;stroke-width:1.67774;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
+         style="fill:#7a5859;fill-opacity:1;stroke:#14233a;stroke-width:3.35547;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
          id="rect11"
          width="16.390532"
          height="3.2243667"
@@ -80,7 +80,15 @@
        style="display:inline;fill:#fdd179"
        transform="translate(-0.07957379,3.5270383)">
       <rect
-         style="fill:#fdd179;stroke:#14233a;stroke-width:1.67774;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
+         style="display:inline;fill:#3d3333;stroke:#14233a;stroke-width:3.35547498;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
+         id="rect9"
+         width="13.046446"
+         height="3.3506887"
+         x="27.423018"
+         y="60.773357"
+         inkscape:label="body" />
+      <rect
+         style="fill:#fdd179;stroke:#14233a;stroke-width:3.35547498;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
          id="rect2"
          width="20.53647"
          height="29.998556"
@@ -92,7 +100,7 @@
          id="layer4"
          inkscape:label="stripes">
         <rect
-           style="fill:#3d3333;stroke-width:0.651869;stroke-linecap:square;paint-order:stroke fill markers"
+           style="fill:#3d3333;stroke-width:0.65154342;stroke-linecap:square;paint-order:stroke fill markers;stroke-dasharray:none"
            id="rect2-9"
            width="20.53647"
            height="3.3506887"
@@ -123,14 +131,6 @@
            x="23.678005"
            y="33.81897"
            inkscape:label="body" />
-        <rect
-           style="fill:#3d3333;stroke:#14233a;stroke-width:1.67774;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
-           id="rect9"
-           width="13.046446"
-           height="3.3506887"
-           x="27.423018"
-           y="60.773357"
-           inkscape:label="body" />
       </g>
     </g>
     <g
@@ -140,7 +140,7 @@
        style="display:inline;fill:#bbc3d0"
        transform="translate(-2.675654e-8,4.6199368)">
       <rect
-         style="fill:#7a5859;fill-opacity:1;stroke:#14233a;stroke-width:1.67774;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
+         style="fill:#7a5859;fill-opacity:1;stroke:#14233a;stroke-width:3.35547498;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
          id="rect25"
          width="10.927021"
          height="5.6643744"
@@ -148,49 +148,49 @@
          y="38.488354"
          inkscape:label="strap" />
       <rect
-         style="fill:#d5d6db;fill-opacity:1;stroke:#14233a;stroke-width:1.67774;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
+         style="fill:#d5d6db;fill-opacity:1;stroke:#14233a;stroke-width:3.35547;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
          id="rect14"
          width="13.950501"
          height="20.423571"
-         x="18.069191"
-         y="31.298754" />
+         x="15.017433"
+         y="32.090351" />
       <rect
-         style="fill:#96a9c1;fill-opacity:1;stroke:#14233a;stroke-width:1.93898;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
+         style="fill:#96a9c1;fill-opacity:1;stroke:#14233a;stroke-width:3.35547;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
          id="rect21"
          width="6.3740811"
          height="12.619432"
-         x="20.27083"
-         y="35.517483" />
+         x="17.638508"
+         y="35.470215" />
       <rect
-         style="fill:#bbc3d0;fill-opacity:1;stroke:#14233a;stroke-width:1.67774;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
+         style="fill:#bbc3d0;fill-opacity:1;stroke:#14233a;stroke-width:3.35547;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
          id="rect23"
          width="9.1812401"
          height="2.8623197"
-         x="20.453821"
-         y="51.722324" />
+         x="17.402063"
+         y="52.933357" />
       <rect
-         style="fill:#d5d6db;fill-opacity:1;stroke:#14233a;stroke-width:1.67774;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
-         id="rect28"
+         style="fill:#d5d6db;fill-opacity:1;stroke:#14233a;stroke-width:3.35547;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
+         id="rect1"
          width="13.950501"
          height="20.423571"
-         x="-49.664143"
-         y="31.298754"
+         x="-52.7159"
+         y="32.090351"
          transform="scale(-1,1)" />
       <rect
-         style="fill:#96a9c1;fill-opacity:1;stroke:#14233a;stroke-width:1.93898;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
-         id="rect29"
+         style="fill:#96a9c1;fill-opacity:1;stroke:#14233a;stroke-width:3.35547;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
+         id="rect3"
          width="6.3740811"
          height="12.619432"
-         x="-47.462505"
-         y="35.517483"
+         x="-50.094826"
+         y="35.470215"
          transform="scale(-1,1)" />
       <rect
-         style="fill:#bbc3d0;fill-opacity:1;stroke:#14233a;stroke-width:1.67774;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
-         id="rect30"
+         style="fill:#bbc3d0;fill-opacity:1;stroke:#14233a;stroke-width:3.35547;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
+         id="rect5"
          width="9.1812401"
          height="2.8623197"
-         x="-47.279514"
-         y="51.722324"
+         x="-50.331272"
+         y="52.933357"
          transform="scale(-1,1)" />
     </g>
     <g
@@ -216,31 +216,24 @@
     </g>
     <g
        inkscape:groupmode="layer"
-       id="layer8"
+       id="layer2"
        inkscape:label="pollen"
-       transform="translate(-2.675654e-8,4.6199368)"
        style="display:none">
       <rect
-         style="display:inline;fill:#fee1b8;fill-opacity:1;stroke:#fee1b8;stroke-width:0.209717;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
-         id="rect33"
+         style="display:inline;fill:#de9f47;fill-opacity:1;stroke:none;stroke-width:3.35547;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
+         id="rect21-9"
          width="6.3740811"
-         height="12.608297"
-         x="20.270828"
-         y="35.528618"
-         inkscape:export-filename="bee_pollen_sprite.svg"
-         inkscape:export-xdpi="327.34271"
-         inkscape:export-ydpi="327.34271" />
+         height="12.619432"
+         x="17.638508"
+         y="40.090153" />
       <rect
-         style="fill:#fee1b8;fill-opacity:1;stroke:#fee1b8;stroke-width:0.209717;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
-         id="rect34"
+         style="display:inline;fill:#de9f47;fill-opacity:1;stroke:none;stroke-width:3.35547;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
+         id="rect3-3"
          width="6.3740811"
-         height="12.608297"
-         x="-47.462505"
-         y="35.528618"
-         transform="scale(-1,1)"
-         inkscape:export-filename="bee_pollen.png"
-         inkscape:export-xdpi="327.34271"
-         inkscape:export-ydpi="327.34271" />
+         height="12.619432"
+         x="-50.094818"
+         y="40.090153"
+         transform="scale(-1,1)" />
     </g>
   </g>
 </svg>

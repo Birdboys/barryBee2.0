@@ -100,7 +100,7 @@ script = ExtResource("1_w76f5")
 bee_air_speed = 3.0
 
 [node name="beeSprite" type="Sprite3D" parent="."]
-texture_filter = 0
+texture_filter = 1
 texture = ExtResource("2_afy1s")
 
 [node name="beePollenSprite" type="Sprite3D" parent="beeSprite"]
