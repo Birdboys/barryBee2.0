@@ -4,6 +4,7 @@ extends BeeState
 
 func enter():
 	bee.cameraTrauma(0.1)
+	bee.setPollenEmission(false)
 	
 func update(delta):
 	bee.updatePollen(bee.pollen_charge_rate*delta)

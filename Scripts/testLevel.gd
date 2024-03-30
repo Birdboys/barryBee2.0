@@ -16,7 +16,7 @@ func _ready():
 	setField(field_radius, field_segments, field_platform_length)
 	placeBee(0)
 	bee.position.y = 2
-	boss.field_radius = field_radius
+	boss.field_radius = field_radius + .1
 	boss.camera_trauma.connect(bee.cameraTrauma)
 	boss.change_progress.connect(increaseProgress)
 	bee.setStats(field_radius)

@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgvk44kiikdnm"]
+
+[ext_resource type="Texture2D" uid="uid://b8yy6s2p45r5t" path="res://Assets/bears/blackbear/blackbear_head.svg" id="1_0nk8k"]
+[ext_resource type="Texture2D" uid="uid://y54b3akue4rg" path="res://Assets/bears/blackbear/blackbear_ear.svg" id="2_t78dt"]
+[ext_resource type="Texture2D" uid="uid://cfyfw1if24wpm" path="res://Assets/bears/blackbear/blackbear_body.svg" id="3_oykrv"]
+[ext_resource type="Texture2D" uid="uid://ckifbhvx8wvqj" path="res://Assets/bears/blackbear/blackbear_pupil.svg" id="3_t5kjv"]
+[ext_resource type="Texture2D" uid="uid://fcqfm11ljmyg" path="res://Assets/bears/blackbear/blackbear_paw_right.svg" id="5_2t7t0"]
+
+[node name="blackBearBoss" type="Node3D"]
+
+[node name="bossHead" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, -2)
+
+[node name="bossHeadSprite" type="Sprite3D" parent="bossHead"]
+pixel_size = 0.08
+transparent = false
+texture = ExtResource("1_0nk8k")
+
+[node name="bossLeftEar" type="Node3D" parent="bossHead"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 8, 2)
+
+[node name="bossLeftEarSprite" type="Sprite3D" parent="bossHead/bossLeftEar"]
+pixel_size = 0.08
+transparent = false
+texture = ExtResource("2_t78dt")
+
+[node name="bossRightEar" type="Node3D" parent="bossHead"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 8, 2)
+
+[node name="bossLeftEarSprite" type="Sprite3D" parent="bossHead/bossRightEar"]
+pixel_size = 0.08
+transparent = false
+texture = ExtResource("2_t78dt")
+
+[node name="bossPupils" type="Node3D" parent="bossHead"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.71694, 0)
+
+[node name="bossPupilLeft" type="Sprite3D" parent="bossHead/bossPupils"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.665, 0, -0.00999999)
+pixel_size = 0.08
+transparent = false
+texture = ExtResource("3_t5kjv")
+
+[node name="bossPupilRight" type="Sprite3D" parent="bossHead/bossPupils"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6652, 0, -0.01)
+pixel_size = 0.08
+transparent = false
+texture = ExtResource("3_t5kjv")
+
+[node name="bossBody" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="bossBodySprite" type="Sprite3D" parent="bossBody"]
+pixel_size = 0.08
+transparent = false
+texture = ExtResource("3_oykrv")
+
+[node name="bossPawLeft" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 3, -6)
+
+[node name="bossPawLeftSprite" type="Sprite3D" parent="bossPawLeft"]
+pixel_size = 0.08
+transparent = false
+texture = ExtResource("5_2t7t0")
+
+[node name="bossPawRight" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 3, -6)
+
+[node name="bossPawRightSprite" type="Sprite3D" parent="bossPawRight"]
+pixel_size = 0.08
+transparent = false
+texture = ExtResource("5_2t7t0")
