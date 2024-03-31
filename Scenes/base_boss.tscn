@@ -930,8 +930,11 @@ _data = {
 "recovery4": SubResource("Animation_r1usr")
 }
 
-[node name="baseBoss" type="Node3D"]
+[node name="baseBoss" type="Node3D" node_paths=PackedStringArray("bossAnim", "hurtbox_list", "hitbox_list")]
 script = ExtResource("1_1ac8r")
+bossAnim = NodePath("bossAnim")
+hurtbox_list = [NodePath("bossHead/biteHurtbox"), NodePath("bossPawRight/pawRightHurtbox"), NodePath("bossPawLeft/pawLeftHurtbox")]
+hitbox_list = [NodePath("bossHead/biteHitbox"), NodePath("bossPawRight/pawRightHitbox"), NodePath("bossPawLeft/pawLeftHitbox")]
 
 [node name="bossBody" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

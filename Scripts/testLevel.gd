@@ -2,7 +2,7 @@ extends Node3D
 @onready var fieldHole := $levelRing/hole
 @onready var fieldPlatform := $levelRing/platform
 @onready var bee := $beeCharacter
-@onready var boss := $baseBoss
+@onready var boss := $blackBearBoss
 @onready var fightTimer := $fightTimer
 @onready var frontRing := $frontRing
 @onready var backRing := $backRing

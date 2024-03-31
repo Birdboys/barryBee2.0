@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="14.495689"
-   height="26.48245"
-   viewBox="0 0 3.8353178 7.006815"
+   width="14.495682"
+   height="26.482452"
+   viewBox="0 0 3.8353158 7.0068155"
    version="1.1"
    id="svg1"
    inkscape:export-filename="bear_temp_body.png"
@@ -27,14 +27,14 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="1.0436344"
-     inkscape:cx="90.069856"
-     inkscape:cy="195.94985"
+     inkscape:cx="-202.17808"
+     inkscape:cy="60.845062"
      inkscape:window-width="1920"
      inkscape:window-height="1057"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer5"
+     inkscape:current-layer="layer2"
      inkscape:export-bgcolor="#ffffff00"
      showgrid="false" /><defs
      id="defs1" /><g
@@ -88,6 +88,6 @@
          x="51.392242"
          y="24.243889"
          inkscape:label="pupil_right"
-         inkscape:export-filename="blackbear_pupil.svg"
+         inkscape:export-filename="..\..\barryBee\Assets\bears\blackbear\blackbear_pupil.svg"
          inkscape:export-xdpi="96"
          inkscape:export-ydpi="96" /></g></g></svg>

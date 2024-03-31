@@ -1,10 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://bgvk44kiikdnm"]
+[gd_scene load_steps=18 format=3 uid="uid://bgvk44kiikdnm"]
 
 [ext_resource type="Texture2D" uid="uid://b8yy6s2p45r5t" path="res://Assets/bears/blackbear/blackbear_head.svg" id="1_0nk8k"]
+[ext_resource type="Script" path="res://Scripts/blackbear_boss.gd" id="1_s03cn"]
 [ext_resource type="Texture2D" uid="uid://y54b3akue4rg" path="res://Assets/bears/blackbear/blackbear_ear.svg" id="2_t78dt"]
 [ext_resource type="Texture2D" uid="uid://cfyfw1if24wpm" path="res://Assets/bears/blackbear/blackbear_body.svg" id="3_oykrv"]
 [ext_resource type="Texture2D" uid="uid://ckifbhvx8wvqj" path="res://Assets/bears/blackbear/blackbear_pupil.svg" id="3_t5kjv"]
 [ext_resource type="Texture2D" uid="uid://fcqfm11ljmyg" path="res://Assets/bears/blackbear/blackbear_paw_right.svg" id="5_2t7t0"]
+[ext_resource type="PackedScene" uid="uid://cmvbwovybfgmc" path="res://Scenes/state_machine.tscn" id="7_igq8u"]
+[ext_resource type="Script" path="res://Scripts/boss_states/boss_idle.gd" id="8_jfr3w"]
+[ext_resource type="Script" path="res://Scripts/boss_states/boss_anticipation.gd" id="9_ud4pv"]
+[ext_resource type="Script" path="res://Scripts/boss_states/boss_attack.gd" id="10_uegn1"]
+[ext_resource type="Script" path="res://Scripts/boss_states/boss_recovery.gd" id="11_noyqq"]
 
 [sub_resource type="Animation" id="Animation_2wl7q"]
 length = 0.001
@@ -47,7 +53,6 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_bgyuy"]
 resource_name = "anticipation1"
-length = 1.5
 step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -64,7 +69,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_t8rab"]
 resource_name = "attack1"
-length = 2.5
+length = 3.5
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -73,7 +78,7 @@ tracks/0/path = NodePath("bossPawLeft:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 1.3, 1.45, 2.5),
+"times": PackedFloat32Array(0, 0.3, 1.5, 1.65, 3.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(11, 3, -6), Vector3(11, 3, -6), Vector3(11, 3, -6), Vector3(11, 3, -6), Vector3(11, 3, -6)]
@@ -132,7 +137,9 @@ _data = {
 "recovery1": SubResource("Animation_u33uh")
 }
 
-[node name="blackBearBoss" type="Node3D"]
+[node name="blackBearBoss" type="Node3D" node_paths=PackedStringArray("bossAnim")]
+script = ExtResource("1_s03cn")
+bossAnim = NodePath("bossAnim")
 
 [node name="bossHead" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, -2)
@@ -140,6 +147,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, -2)
 [node name="bossHeadSprite" type="Sprite3D" parent="bossHead"]
 pixel_size = 0.08
 transparent = false
+texture_filter = 2
 texture = ExtResource("1_0nk8k")
 
 [node name="bossLeftEar" type="Node3D" parent="bossHead"]
@@ -148,6 +156,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 8, 2)
 [node name="bossLeftEarSprite" type="Sprite3D" parent="bossHead/bossLeftEar"]
 pixel_size = 0.08
 transparent = false
+texture_filter = 2
 texture = ExtResource("2_t78dt")
 
 [node name="bossRightEar" type="Node3D" parent="bossHead"]
@@ -156,21 +165,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 8, 2)
 [node name="bossLeftEarSprite" type="Sprite3D" parent="bossHead/bossRightEar"]
 pixel_size = 0.08
 transparent = false
+texture_filter = 2
 texture = ExtResource("2_t78dt")
 
 [node name="bossPupils" type="Node3D" parent="bossHead"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.71694, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.24311, 1.717, -0.05)
 
 [node name="bossPupilLeft" type="Sprite3D" parent="bossHead/bossPupils"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.665, 0, -0.00999999)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.665, 0, 0)
 pixel_size = 0.08
 transparent = false
+texture_filter = 2
 texture = ExtResource("3_t5kjv")
 
 [node name="bossPupilRight" type="Sprite3D" parent="bossHead/bossPupils"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6652, 0, -0.00999999)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.665, 0, 0)
 pixel_size = 0.08
 transparent = false
+texture_filter = 2
 texture = ExtResource("3_t5kjv")
 
 [node name="bossPawLeft" type="Node3D" parent="."]
@@ -179,6 +191,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 3, -6)
 [node name="bossPawLeftSprite" type="Sprite3D" parent="bossPawLeft"]
 pixel_size = 0.08
 transparent = false
+texture_filter = 2
 texture = ExtResource("5_2t7t0")
 
 [node name="bossPawRight" type="Node3D" parent="."]
@@ -187,6 +200,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 3, -6)
 [node name="bossPawRightSprite" type="Sprite3D" parent="bossPawRight"]
 pixel_size = 0.08
 transparent = false
+texture_filter = 2
 texture = ExtResource("5_2t7t0")
 
 [node name="bossBody" type="Node3D" parent="."]
@@ -195,9 +209,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 [node name="bossBodySprite" type="Sprite3D" parent="bossBody"]
 pixel_size = 0.08
 transparent = false
+texture_filter = 0
 texture = ExtResource("3_oykrv")
 
 [node name="bossAnim" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_bha3c")
 }
+
+[node name="stateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("7_igq8u")]
+initial_state = NodePath("bossIdle")
+
+[node name="bossIdle" type="Node" parent="stateMachine" node_paths=PackedStringArray("idleTimer")]
+script = ExtResource("8_jfr3w")
+idleTimer = NodePath("../../idleTimer")
+
+[node name="bossAnticipation" type="Node" parent="stateMachine" node_paths=PackedStringArray("bossAnim")]
+script = ExtResource("9_ud4pv")
+bossAnim = NodePath("../../bossAnim")
+
+[node name="bossAttack" type="Node" parent="stateMachine" node_paths=PackedStringArray("bossAnim")]
+script = ExtResource("10_uegn1")
+bossAnim = NodePath("../../bossAnim")
+
+[node name="bossRecovery" type="Node" parent="stateMachine" node_paths=PackedStringArray("bossAnim")]
+script = ExtResource("11_noyqq")
+bossAnim = NodePath("../../bossAnim")
+
+[node name="idleTimer" type="Timer" parent="."]

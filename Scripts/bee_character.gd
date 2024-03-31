@@ -76,7 +76,7 @@ func _on_bee_hurtbox_area_entered(area):
 
 func initializeMobileButtons():
 	var screen_size = get_viewport().size
-	var button_size = screen_size/3
+	var button_size = screen_size/2
 	for x in range(0, mobileButtons.get_child_count()):
 		var button := mobileButtons.get_child(x)
 		button.shape.size = button_size 

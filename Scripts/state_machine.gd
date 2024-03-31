@@ -1,5 +1,5 @@
 extends Node
-
+class_name StateMachine
 
 @export var initial_state : State
 var current_state : State
@@ -10,9 +10,9 @@ func initialize(parent):
 		if child is State:
 			states[child.name.to_lower()] = child
 			child.transitioned.connect(on_state_transition)
-			if get_parent() is Bee:
+			if child is BeeState:
 				child.bee = parent
-			elif get_parent() is Boss:
+			elif child is BossState:
 				child.boss = parent
 
 	if initial_state:
@@ -28,7 +28,6 @@ func _physics_process(delta):
 		current_state.physics_update(delta)
 
 func on_state_transition(state, new_state_name):
-	print("transition from %s to %s" % [state.name, new_state_name])
 	if state != current_state:
 		return
 		

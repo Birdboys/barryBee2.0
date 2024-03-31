@@ -1,8 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://jllmtcbv228d"]
+[gd_scene load_steps=24 format=3 uid="uid://jllmtcbv228d"]
 
 [ext_resource type="Script" path="res://Scripts/testLevel.gd" id="1_o1vrm"]
 [ext_resource type="PackedScene" uid="uid://jxq0tqjk3anq" path="res://Scenes/bee_character.tscn" id="2_yhk1x"]
-[ext_resource type="PackedScene" uid="uid://bifsqvk80gj3y" path="res://Scenes/base_boss.tscn" id="3_ok2be"]
 [ext_resource type="PackedScene" uid="uid://bgvk44kiikdnm" path="res://Scenes/black_bear_boss.tscn" id="4_e4g41"]
 [ext_resource type="Texture2D" uid="uid://cgf8ov0ppears" path="res://Assets/temp/test_grass.svg" id="4_qqyeg"]
 [ext_resource type="Texture2D" uid="uid://rq1ehongbgu6" path="res://Assets/temp/forest_bg.png" id="5_5w62o"]
@@ -143,8 +142,6 @@ operation = 2
 transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 10, 20)
 
 [node name="beeCharacter" parent="." instance=ExtResource("2_yhk1x")]
-
-[node name="baseBoss" parent="." instance=ExtResource("3_ok2be")]
 
 [node name="blackBearBoss" parent="." instance=ExtResource("4_e4g41")]
 
