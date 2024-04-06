@@ -6,7 +6,12 @@ func enter():
 	bee.setPollenEmission(false)
 	
 func update(delta):
-	bee.updatePollen(bee.pollen_charge_rate*delta)
+	if bee.pollen_val < 100:
+		bee.updatePollen(bee.pollen_charge_rate*delta)
+		bee.pollenCollectEmmitter.emitting = true
+	else:
+		bee.pollenCollectEmmitter.emitting = false
+		
 	var inputs = getInputs()
 	rotateSprite((inputs.x * -1) + (inputs.z * 1),1.0,delta)
 	if inputs.x:
@@ -20,3 +25,5 @@ func update(delta):
 			bee.velocity.y = jump_boost
 			emit_signal("transitioned", self, "beeFlying")
 
+func exit():
+	bee.pollenCollectEmmitter.emitting = false

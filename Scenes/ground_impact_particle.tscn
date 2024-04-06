@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwq11g0q85c02"]
+
+[ext_resource type="Texture2D" uid="uid://bh1x5cd3x73fo" path="res://Assets/temp/ground_impact_particle.png" id="1_cr5gq"]
+[ext_resource type="Script" path="res://Scripts/ground_impact_particle.gd" id="2_x4svn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v4nd2"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = ExtResource("1_cr5gq")
+disable_receive_shadows = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jcm84"]
+material = SubResource("StandardMaterial3D_v4nd2")
+size = Vector2(1, 1)
+orientation = 2
+
+[node name="groundImpactParticle" type="CPUParticles3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+cast_shadow = 0
+emitting = false
+amount = 24
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+draw_order = 2
+mesh = SubResource("PlaneMesh_jcm84")
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, -5, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 8.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+script = ExtResource("2_x4svn")
+
+[node name="lifetime" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="lifetime" to="." method="_on_lifetime_timeout"]

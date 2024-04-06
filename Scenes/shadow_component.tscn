@@ -1,14 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://ddn4r2cx0d5tp"]
 
 [ext_resource type="Script" path="res://Scripts/shadow_component.gd" id="1_ybuli"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_10l03"]
-load_path = "res://.godot/imported/temp_shadow.png-f15cdabeaeaee10584dc6b2609ea7566.s3tc.ctex"
+[ext_resource type="Texture2D" uid="uid://br7imostortep" path="res://Assets/temp/temp_shadow.png" id="2_5gm3i"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ykvhm"]
 resource_local_to_scene = true
 transparency = 1
-albedo_texture = SubResource("CompressedTexture2D_10l03")
+albedo_texture = ExtResource("2_5gm3i")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pywhc"]
 resource_local_to_scene = true
@@ -21,6 +19,7 @@ casting_shadow = true
 
 [node name="shadowRay" type="RayCast3D" parent="."]
 target_position = Vector3(0, -25, 0)
+collide_with_areas = true
 
 [node name="shadowSprite" type="MeshInstance3D" parent="."]
 top_level = true

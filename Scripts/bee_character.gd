@@ -9,7 +9,7 @@ class_name Bee
 @onready var bee_jump_boost := 2.0
 @onready var pollen_charge_rate := 35.0
 @onready var pollen_use_rate := 40.0
-@onready var pollen_val := 0.0
+@onready var pollen_val := 99.0
 @onready var pollen_lift := gravity + 7.5
 @onready var pollen_thrust_mult := 2.0
 @onready var pollen_dash_cost := 15.0
@@ -34,13 +34,19 @@ class_name Bee
 @onready var fpsLabel := $beeUI/beeUIMargin/fpsLabel
 @onready var pollenEmitters := $beeSprite/pollenEmitters
 @onready var pollenBurstEmitters := $beeSprite/pollenBurstEmitters
-@onready var stinger := $beeStinger as Area3D
+@onready var stinger := $beeSprite/beeStinger as Area3D
+@onready var stingerSprite := $beeSprite/beeStinger/beeStingerSprite
+@onready var pollenCollectEmmitter := $beeSprite/pollenInputParticle
+@onready var hurtbox := $beeHurtbox
 
 var bee_speed : float
 var bee_air_max_speed : float
 var field_radius : float
 var field_height : float
 var cam_offset : Vector3 #8, -15
+
+signal game_over
+
 func _ready():
 	await get_tree().process_frame
 	await get_tree().process_frame
@@ -51,11 +57,12 @@ func _process(delta):
 	moveCamera(delta)
 	beeSprite.rotation.y = getAngle()
 	fpsLabel.text = "FPS:%s" % int(Engine.get_frames_per_second())
+	
 func updatePollen(amount):
 	pollen_val += amount
 	pollen_val = clamp(pollen_val, 0, 100)
 	pollenBar.value = pollen_val
-	
+
 func moveCamera(delta):
 	var cam_angle = Vector3.FORWARD.signed_angle_to(Vector3(camArm.position.x,0,camArm.position.z), Vector3.UP)
 	var new_angle = lerp_angle(cam_angle, getAngle(), 0.05)
@@ -71,12 +78,16 @@ func setProgressBar(val):
 	progressBar.value = val
 	
 func _on_bee_hurtbox_area_entered(area):
-	bee_health-=1
-	print("bee hit")
+	print("WAS BOSS INTERRUPTED: %s" % get_tree().get_nodes_in_group("boss")[0].interrupted)
+	if not get_tree().get_nodes_in_group("boss")[0].interrupted:
+		print("BEE DIED")
+		call_deferred("emit_signal", "game_over") 
+	else:
+		print("BEE ALMOST DIED BUT DIDNT")
 
 func initializeMobileButtons():
 	var screen_size = get_viewport().size
-	var button_size = screen_size/2
+	var button_size = Vector2(screen_size.x/3, screen_size.y/2)
 	for x in range(0, mobileButtons.get_child_count()):
 		var button := mobileButtons.get_child(x)
 		button.shape.size = button_size 

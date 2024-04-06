@@ -17,6 +17,7 @@ size = Vector2(0.75, 0.75)
 orientation = 2
 
 [node name="pollenOutputParticle" type="CPUParticles3D"]
+cast_shadow = 0
 emitting = false
 lifetime = 0.5
 randomness = 0.3

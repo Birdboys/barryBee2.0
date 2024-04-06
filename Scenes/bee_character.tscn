@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://jxq0tqjk3anq"]
+[gd_scene load_steps=33 format=3 uid="uid://jxq0tqjk3anq"]
 
 [ext_resource type="Script" path="res://Scripts/bee_character.gd" id="1_w76f5"]
 [ext_resource type="Texture2D" uid="uid://basj54aj0r1l7" path="res://Assets/bee/bee_back_sprite.svg" id="2_afy1s"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://dmhs6l6hh552y" path="res://Scenes/pollen_output_particle.tscn" id="5_n2yry"]
 [ext_resource type="Texture2D" uid="uid://dstr8323ogqpf" path="res://Assets/temp/temp_pollen_fill.png" id="6_2qol0"]
 [ext_resource type="Texture2D" uid="uid://cyqfsco4u2u61" path="res://Assets/temp/temp_progress_bg.png" id="7_fuoxu"]
+[ext_resource type="PackedScene" uid="uid://dkywieukdcbhu" path="res://Scenes/pollen_input_particle.tscn" id="7_toncw"]
+[ext_resource type="Texture2D" uid="uid://c02xy4k8a10x4" path="res://Assets/bee/bee_stinger.svg" id="8_jcvwp"]
 [ext_resource type="Texture2D" uid="uid://ck2jkgqvtx3r7" path="res://Assets/temp/temp_progress_front.png" id="8_xkegg"]
 [ext_resource type="Texture2D" uid="uid://djp7k7srfsdw3" path="res://Assets/temp/temp_progress_fill.png" id="9_lhkvy"]
 [ext_resource type="PackedScene" uid="uid://cmvbwovybfgmc" path="res://Scenes/state_machine.tscn" id="10_ihhyr"]
@@ -26,8 +28,8 @@ shader = ExtResource("3_dve1b")
 shader_parameter/progress = 1.0
 shader_parameter/texture_albedo = ExtResource("4_d4emq")
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_1d5xi"]
-radius = 1.30285
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8tnka"]
+height = 2.35246
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xr7x2"]
 radius = 0.65
@@ -86,13 +88,13 @@ fractal_gain = 0.75
 noise_type = 3
 seed = 1
 frequency = 0.003
+fractal_gain = 0.75
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkel7"]
 size = Vector2(720, 426)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_8tnka"]
-height = 1.0
-radius = 0.25
+[sub_resource type="SphereShape3D" id="SphereShape3D_1d5xi"]
+radius = 1.30285
 
 [node name="beeCharacter" type="CharacterBody3D"]
 collision_layer = 0
@@ -100,7 +102,6 @@ script = ExtResource("1_w76f5")
 bee_air_speed = 3.0
 
 [node name="beeSprite" type="Sprite3D" parent="."]
-texture_filter = 1
 texture = ExtResource("2_afy1s")
 
 [node name="beePollenSprite" type="Sprite3D" parent="beeSprite"]
@@ -128,8 +129,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.435688, -0.628636, 0)
 [node name="pollenOutputParticle2" parent="beeSprite/pollenEmitters" instance=ExtResource("5_n2yry")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.431129, -0.628636, 0)
 
-[node name="beeCollision" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_1d5xi")
+[node name="pollenInputParticle" parent="beeSprite" instance=ExtResource("7_toncw")]
+
+[node name="beeStinger" type="Area3D" parent="beeSprite"]
+collision_layer = 4
+collision_mask = 8
+monitorable = false
+
+[node name="beeStingerCol" type="CollisionShape3D" parent="beeSprite/beeStinger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.869695, 0)
+shape = SubResource("CylinderShape3D_8tnka")
+
+[node name="beeStingerSprite" type="Sprite3D" parent="beeSprite/beeStinger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.52437, -0.05)
+visible = false
+texture = ExtResource("8_jcvwp")
 
 [node name="beeHurtbox" type="Area3D" parent="."]
 collision_layer = 2
@@ -250,14 +264,8 @@ script = ExtResource("14_252b0")
 max_shadow_radius = 1.0
 scale_size = true
 
-[node name="beeStinger" type="Area3D" parent="."]
-collision_layer = 4
-collision_mask = 8
-monitorable = false
-
-[node name="beeStingerCol" type="CollisionShape3D" parent="beeStinger"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-shape = SubResource("CylinderShape3D_8tnka")
+[node name="beeCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_1d5xi")
 
 [connection signal="area_entered" from="beeHurtbox" to="." method="_on_bee_hurtbox_area_entered"]
 [connection signal="animation_finished" from="beeAnim" to="stateMachine/beeDashing" method="_on_bee_anim_animation_finished"]

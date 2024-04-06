@@ -1,0 +1,220 @@
+[gd_scene load_steps=24 format=3 uid="uid://bibpxh5mi04v8"]
+
+[ext_resource type="Script" path="res://Scripts/test_level_arctic.gd" id="1_vq1er"]
+[ext_resource type="PackedScene" uid="uid://jxq0tqjk3anq" path="res://Scenes/bee_character.tscn" id="2_h3iv1"]
+[ext_resource type="Texture2D" uid="uid://cgf8ov0ppears" path="res://Assets/temp/test_grass.svg" id="4_p8wos"]
+[ext_resource type="Texture2D" uid="uid://chx0umwv0nyxi" path="res://Assets/temp/forest_bg3.png" id="5_e5wrv"]
+[ext_resource type="Texture2D" uid="uid://cymsjf3nhor8g" path="res://Assets/temp/forest_bg2.png" id="6_n3ar6"]
+[ext_resource type="Texture2D" uid="uid://djmi0mpccudcp" path="res://Assets/temp/forest_bg1.png" id="7_go4nx"]
+[ext_resource type="PackedScene" uid="uid://1wiux1hjeo7u" path="res://Scenes/polar_bear_boss.tscn" id="8_hd23s"]
+[ext_resource type="Texture2D" uid="uid://htnfcdlg0v55" path="res://Assets/temp/test_forest.svg" id="8_l3mb3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mh46k"]
+sky_top_color = Color(0.25098, 0.321569, 0.45098, 1)
+sky_horizon_color = Color(0.588235, 0.662745, 0.756863, 1)
+ground_bottom_color = Color(0.792157, 0.901961, 0.85098, 1)
+ground_horizon_color = Color(0.588235, 0.662745, 0.756863, 1)
+ground_curve = 0.149286
+
+[sub_resource type="Sky" id="Sky_k3y21"]
+sky_material = SubResource("ProceduralSkyMaterial_mh46k")
+
+[sub_resource type="Environment" id="Environment_w75vx"]
+background_mode = 2
+sky = SubResource("Sky_k3y21")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvf7m"]
+shading_mode = 0
+albedo_color = Color(0.266667, 0.439216, 0.176471, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwc5o"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("4_p8wos")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_offset = Vector3(-2.57, 0.49, 0)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jux0y"]
+material = SubResource("StandardMaterial3D_cwc5o")
+top_radius = 4.0
+bottom_radius = 4.0
+height = 1.5
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_f1wxd"]
+material = SubResource("StandardMaterial3D_cwc5o")
+flip_faces = true
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2rwl"]
+transparency = 2
+alpha_scissor_threshold = 0.875
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("5_e5wrv")
+uv1_scale = Vector3(3.5, 3.5, 3.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5ssso"]
+material = SubResource("StandardMaterial3D_g2rwl")
+flip_faces = true
+top_radius = 40.0
+bottom_radius = 40.0
+height = 150.0
+radial_segments = 72
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gce4h"]
+transparency = 2
+alpha_scissor_threshold = 0.875
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("6_n3ar6")
+uv1_scale = Vector3(3.5, 3.5, 3.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gcg1t"]
+material = SubResource("StandardMaterial3D_gce4h")
+flip_faces = true
+top_radius = 50.0
+bottom_radius = 50.0
+height = 150.0
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sv2p0"]
+transparency = 2
+alpha_scissor_threshold = 0.875
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("7_go4nx")
+uv1_scale = Vector3(3.5, 3.5, 3.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lhtvm"]
+material = SubResource("StandardMaterial3D_sv2p0")
+flip_faces = true
+top_radius = 60.0
+bottom_radius = 60.0
+height = 150.0
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a2730"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = ExtResource("8_l3mb3")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ut8pg"]
+material = SubResource("StandardMaterial3D_a2730")
+size = Vector2(500, 1500)
+orientation = 0
+
+[node name="testLevel" type="Node3D"]
+script = ExtResource("1_vq1er")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_w75vx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="levelRing" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="platform" type="CSGCylinder3D" parent="levelRing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material = SubResource("StandardMaterial3D_wvf7m")
+
+[node name="hole" type="CSGCylinder3D" parent="levelRing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+operation = 2
+
+[node name="testCam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 10, 20)
+
+[node name="beeCharacter" parent="." instance=ExtResource("2_h3iv1")]
+
+[node name="fightTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="frontRing" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_jux0y")
+
+[node name="backRing" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_f1wxd")
+
+[node name="backgrounds2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22, 0)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="backgrounds2"]
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_5ssso")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="backgrounds2"]
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_gcg1t")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="backgrounds2"]
+visible = false
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_lhtvm")
+
+[node name="Node3D" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_ut8pg")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 250, 0, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_ut8pg")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -250)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_ut8pg")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 250)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_ut8pg")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -176.777, 0, -176.777)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_ut8pg")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 176.777, 0, 176.777)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_ut8pg")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 176.777, 0, -176.777)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_ut8pg")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -176.777, 0, 176.777)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_ut8pg")
+
+[node name="polarBearBoss" parent="." instance=ExtResource("8_hd23s")]
+
+[connection signal="timeout" from="fightTimer" to="." method="_on_fight_timer_timeout"]

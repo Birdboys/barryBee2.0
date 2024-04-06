@@ -16,7 +16,8 @@ func enter():
 func update(delta):
 	if abs(angle_difference(boss.rotation.y, boss.bee_angle)) > boss_follow_angle:
 		boss.rotation.y = lerp_angle(boss.rotation.y, boss.bee_angle - boss_follow_angle * sign(angle_difference(boss.rotation.y, boss.bee_angle)), boss_follow_speed)
-
+	boss.handlePupils(delta, boss.bee_angle, boss.bee_pos)
+	
 func idleTimerDone():
 	emit_signal("transitioned",self,"bossAnticipation")
 

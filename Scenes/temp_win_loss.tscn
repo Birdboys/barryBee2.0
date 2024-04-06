@@ -1,0 +1,106 @@
+[gd_scene load_steps=3 format=3 uid="uid://bui7trak82aaj"]
+
+[ext_resource type="Script" path="res://Scripts/temp_win_loss.gd" id="1_opih7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0tboq"]
+bg_color = Color(0.239216, 0.2, 0.2, 1)
+
+[node name="tempWinLoss" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_opih7")
+
+[node name="bg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.996078, 0.882353, 0.721569, 1)
+
+[node name="margins" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="margins"]
+layout_mode = 2
+
+[node name="win" type="Control" parent="margins/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="margins/VBoxContainer/win"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="win" type="Label" parent="margins/VBoxContainer/win/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.239216, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 72
+text = "YOU WIN"
+horizontal_alignment = 1
+
+[node name="time" type="Label" parent="margins/VBoxContainer/win/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.239216, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 72
+text = "TIME: 25.4"
+horizontal_alignment = 1
+
+[node name="lose" type="Control" parent="margins/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="margins/VBoxContainer/lose"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="lose" type="Label" parent="margins/VBoxContainer/lose/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.239216, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 72
+text = "YOU LOST"
+horizontal_alignment = 1
+
+[node name="L" type="Label" parent="margins/VBoxContainer/lose/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.239216, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 72
+text = "HINT: dont do that"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="margins/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = SubResource("StyleBoxFlat_0tboq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0tboq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0tboq")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_0tboq")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0tboq")
+text = "AGAIN"
+
+[connection signal="pressed" from="margins/VBoxContainer/Button" to="." method="_on_button_pressed"]

@@ -2,6 +2,8 @@ extends BeeState
 @onready var dash_cooldown := 1.0
 var dash_dir : int
 func enter():
+	bee.hurtbox.set_deferred("monitoring",false)
+	bee.hurtbox.set_deferred("monitorable",false)
 	if Input.is_action_pressed("left"): 
 		bee.beeAnim.play("dash_left")
 		dash_dir = -1
@@ -17,6 +19,8 @@ func update(delta):
 	rotateSprite(dash_dir,1.5,delta)
 	
 func exit():
+	bee.hurtbox.set_deferred("monitoring",true)
+	bee.hurtbox.set_deferred("monitorable",true)
 	setDashTimer()
 
 func setDashTimer():

@@ -26,15 +26,16 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="1.5895716"
-     inkscape:cx="72.975637"
-     inkscape:cy="218.61236"
+     inkscape:zoom="2.2479937"
+     inkscape:cx="103.64798"
+     inkscape:cy="181.71759"
      inkscape:window-width="1920"
      inkscape:window-height="1057"
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer2" />
+     inkscape:current-layer="layer7"
+     showgrid="false" />
   <defs
      id="defs1" />
   <g
@@ -197,22 +198,32 @@
        inkscape:groupmode="layer"
        id="layer7"
        inkscape:label="stinger"
-       transform="translate(0,-0.4214548)"
-       style="display:none">
+       transform="translate(0,5.9223212)"
+       style="display:inline">
       <rect
-         style="fill:#bbc3d0;fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
-         id="rect31"
-         width="5.4599261"
-         height="3.5699515"
-         x="31.136705"
-         y="63.452602" />
-      <rect
-         style="fill:#f1f6f0;fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
-         id="rect32"
-         width="1.8899745"
+         style="fill:#f1f6f0;fill-opacity:1;stroke:#14233a;stroke-width:3.35547498;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
+         id="rect7"
+         width="2.076556"
          height="5.6699233"
-         x="32.92168"
+         x="32.828388"
+         y="72.692474" />
+      <rect
+         style="display:inline;fill:#f1f6f0;fill-opacity:1;stroke:#14233a;stroke-width:3.35547498;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
+         id="rect32"
+         width="5.2484441"
+         height="5.6699233"
+         x="31.242445"
          y="67.022552" />
+      <rect
+         style="display:inline;fill:#bbc3d0;fill-opacity:1;stroke:#14233a;stroke-width:3.35547498;stroke-linecap:square;stroke-dasharray:none;paint-order:stroke fill markers"
+         id="rect31"
+         width="9.1915588"
+         height="3.5699515"
+         x="29.270889"
+         y="63.452602"
+         inkscape:export-filename="bee_stinger.svg"
+         inkscape:export-xdpi="327.34271"
+         inkscape:export-ydpi="327.34271" />
     </g>
     <g
        inkscape:groupmode="layer"

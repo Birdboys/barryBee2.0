@@ -1,0 +1,88 @@
+[gd_scene load_steps=10 format=3 uid="uid://1wiux1hjeo7u"]
+
+[ext_resource type="Script" path="res://Scripts/polar_bear_boss.gd" id="1_n3cdl"]
+[ext_resource type="Texture2D" uid="uid://di02pcc4c2cfi" path="res://Assets/bears/polarbear/polarbear_head.svg" id="2_j4yhy"]
+[ext_resource type="Texture2D" uid="uid://c2trld6pctdtm" path="res://Assets/bears/polarbear/polarbear_ear.svg" id="3_te117"]
+[ext_resource type="Texture2D" uid="uid://cwjo31rm06hii" path="res://Assets/bears/polarbear/polarbear_pupil.svg" id="4_3dybj"]
+[ext_resource type="PackedScene" uid="uid://cmvbwovybfgmc" path="res://Scenes/state_machine.tscn" id="5_36xne"]
+[ext_resource type="Texture2D" uid="uid://bfcemjbs2fwsu" path="res://Assets/bears/polarbear/polarbear_body.svg" id="5_lrmpr"]
+[ext_resource type="Texture2D" uid="uid://ce0h611fy4o2w" path="res://Assets/bears/polarbear/polarbear_pawleft.svg" id="6_y0jbg"]
+[ext_resource type="Texture2D" uid="uid://oqgqpctgdshs" path="res://Assets/bears/polarbear/polarbear_pawright.svg" id="7_4tbb1"]
+[ext_resource type="Script" path="res://Scripts/boss_states/boss_idle.gd" id="9_5mwfg"]
+
+[node name="polarBearBoss" type="Node3D" node_paths=PackedStringArray("bossAnim") groups=["boss"]]
+script = ExtResource("1_n3cdl")
+bossAnim = NodePath("bossAnim")
+
+[node name="bossHead" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19, -3)
+
+[node name="headSprite" type="Sprite3D" parent="bossHead"]
+cast_shadow = 0
+pixel_size = 0.08
+transparent = false
+texture = ExtResource("2_j4yhy")
+
+[node name="earLeft" type="Node3D" parent="bossHead"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 8, 1)
+
+[node name="earSprite" type="Sprite3D" parent="bossHead/earLeft"]
+cast_shadow = 0
+pixel_size = 0.08
+transparent = false
+texture = ExtResource("3_te117")
+
+[node name="earRight" type="Node3D" parent="bossHead"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 8, 1)
+
+[node name="earSprite" type="Sprite3D" parent="bossHead/earRight"]
+cast_shadow = 0
+pixel_size = 0.08
+transparent = false
+texture = ExtResource("3_te117")
+
+[node name="pupil" type="Node3D" parent="bossHead"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.991, -0.05)
+
+[node name="pupilSprite" type="Sprite3D" parent="bossHead/pupil"]
+cast_shadow = 0
+pixel_size = 0.08
+texture = ExtResource("4_3dybj")
+
+[node name="bossBody" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="bodySprite" type="Sprite3D" parent="bossBody"]
+cast_shadow = 0
+pixel_size = 0.08
+transparent = false
+texture = ExtResource("5_lrmpr")
+
+[node name="bossPawLeft" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 3, -4)
+
+[node name="pawLeftSprite" type="Sprite3D" parent="bossPawLeft"]
+cast_shadow = 0
+pixel_size = 0.08
+transparent = false
+texture = ExtResource("6_y0jbg")
+
+[node name="bossPawRight" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1, -4)
+
+[node name="pawRightSprite" type="Sprite3D" parent="bossPawRight"]
+cast_shadow = 0
+pixel_size = 0.08
+transparent = false
+texture = ExtResource("7_4tbb1")
+
+[node name="stateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("5_36xne")]
+initial_state = NodePath("bossIdle")
+
+[node name="bossIdle" type="Node" parent="stateMachine" node_paths=PackedStringArray("idleTimer")]
+script = ExtResource("9_5mwfg")
+idleTimer = NodePath("../../idleTimer")
+
+[node name="idleTimer" type="Timer" parent="."]
+
+[node name="bossAnim" type="AnimationPlayer" parent="."]

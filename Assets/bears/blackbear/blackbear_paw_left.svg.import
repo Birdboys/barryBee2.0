@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://djyhdvausks6k"
-path.s3tc="res://.godot/imported/blackbear_paw_left.svg-43f4f0d31f8ae653e6b473c23a99b5ab.s3tc.ctex"
-path.etc2="res://.godot/imported/blackbear_paw_left.svg-43f4f0d31f8ae653e6b473c23a99b5ab.etc2.ctex"
+path="res://.godot/imported/blackbear_paw_left.svg-43f4f0d31f8ae653e6b473c23a99b5ab.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/bears/blackbear/blackbear_paw_left.svg"
-dest_files=["res://.godot/imported/blackbear_paw_left.svg-43f4f0d31f8ae653e6b473c23a99b5ab.s3tc.ctex", "res://.godot/imported/blackbear_paw_left.svg-43f4f0d31f8ae653e6b473c23a99b5ab.etc2.ctex"]
+dest_files=["res://.godot/imported/blackbear_paw_left.svg-43f4f0d31f8ae653e6b473c23a99b5ab.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
