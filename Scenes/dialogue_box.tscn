@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://b72x07cvl3pmi"]
+
+[ext_resource type="Script" path="res://Scripts/dialogue_box.gd" id="1_kooel"]
+[ext_resource type="Texture2D" uid="uid://cfhfi6603lpki" path="res://Assets/temp/temp_dialogue_portrait.png" id="2_red2j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_203kt"]
+bg_color = Color(0.34902, 0.243137, 0.278431, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n4tyy"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+
+[node name="hBox" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+script = ExtResource("1_kooel")
+
+[node name="speakerFrameSprite" type="TextureRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+texture = ExtResource("2_red2j")
+stretch_mode = 5
+
+[node name="bgFillLeft" type="ColorRect" parent="speakerFrameSprite"]
+visible = false
+show_behind_parent = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.34902, 0.243137, 0.278431, 1)
+
+[node name="bgFillRight" type="ColorRect" parent="speakerFrameSprite"]
+show_behind_parent = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.34902, 0.243137, 0.278431, 1)
+
+[node name="dialogueBox" type="Panel" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_203kt")
+
+[node name="dialogueText" type="RichTextLabel" parent="dialogueBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_n4tyy")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_n4tyy")
+bbcode_enabled = true
+text = "THIS IS DIALOGUE TEXT. THIS IS DIALOGUE TEXT. "
+scroll_active = false
+
+[node name="textTimer" type="Timer" parent="."]
+one_shot = true

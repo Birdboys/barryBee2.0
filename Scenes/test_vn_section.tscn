@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5uoawun361m8"]
+
+[ext_resource type="Script" path="res://Scripts/test_vn_section.gd" id="1_b6ftc"]
+[ext_resource type="PackedScene" uid="uid://b72x07cvl3pmi" path="res://Scenes/dialogue_box.tscn" id="1_tas4k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_718fo"]
+bg_color = Color(0.188235, 0.219608, 0.262745, 0.247059)
+
+[node name="testVNSection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_b6ftc")
+
+[node name="background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_718fo")
+
+[node name="screenMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 96
+
+[node name="dialogueScroll" type="ScrollContainer" parent="screenMargin"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="dialogueContainer" type="VBoxContainer" parent="screenMargin/dialogueScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+theme_override_constants/separation = 24
+
+[node name="hBox" parent="screenMargin/dialogueScroll/dialogueContainer" instance=ExtResource("1_tas4k")]
+layout_mode = 2
+
+[node name="hBox2" parent="screenMargin/dialogueScroll/dialogueContainer" instance=ExtResource("1_tas4k")]
+layout_mode = 2
