@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://coqbwbcvgjcss"]
+
+[ext_resource type="Texture2D" uid="uid://dxt0e82gdrxab" path="res://Assets/temp/polarbear_snow_particle.svg" id="1_2vyem"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v4nd2"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = ExtResource("1_2vyem")
+texture_filter = 1
+disable_receive_shadows = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jcm84"]
+material = SubResource("StandardMaterial3D_v4nd2")
+size = Vector2(3, 3)
+orientation = 2
+
+[node name="pollenOutputParticle" type="CPUParticles3D"]
+cast_shadow = 0
+amount = 20
+lifetime = 1.5
+randomness = 0.2
+draw_order = 2
+mesh = SubResource("PlaneMesh_jcm84")
+particle_flag_rotate_y = true
+direction = Vector3(0, -1, 0)
+spread = 35.0
+gravity = Vector3(0, -5, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+scale_amount_min = 0.5

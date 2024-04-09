@@ -168,6 +168,7 @@ rot_noise = SubResource("FastNoiseLite_niisi")
 trans_noise = SubResource("FastNoiseLite_eq1kq")
 
 [node name="beeUI" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="beeUIMargin" type="MarginContainer" parent="beeUI"]
 anchors_preset = 15

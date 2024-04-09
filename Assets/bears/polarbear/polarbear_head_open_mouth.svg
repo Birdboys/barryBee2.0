@@ -34,7 +34,7 @@
      inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer9"
+     inkscape:current-layer="g14"
      inkscape:export-bgcolor="#ffffff00"
      showgrid="false" /><defs
      id="defs1" /><g
@@ -46,7 +46,7 @@
        inkscape:groupmode="layer"
        id="layer3"
        inkscape:label="body"
-       style="display:inline"><rect
+       style="display:none"><rect
          style="display:inline;fill:#f1f6f0;stroke:#14233a;stroke-width:4.23333;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:stroke fill markers"
          id="rect15-5"
          width="93.498497"
@@ -60,7 +60,7 @@
        inkscape:groupmode="layer"
        id="layer9"
        inkscape:label="head"
-       style="display:inline"><g
+       style="display:none"><g
          inkscape:groupmode="layer"
          id="layer11"
          inkscape:label="ears"
@@ -126,7 +126,7 @@
            inkscape:export-filename="..\..\barryBee\Assets\bears\blackbear\blackbear_pupil.svg"
            inkscape:export-xdpi="96"
            inkscape:export-ydpi="96" /><rect
-           style="display:none;fill:#f1f6f0;stroke:none;stroke-width:3.27601;stroke-linecap:square;stroke-linejoin:miter;paint-order:stroke fill markers"
+           style="display:inline;fill:#f1f6f0;stroke:none;stroke-width:3.27601;stroke-linecap:square;stroke-linejoin:miter;paint-order:stroke fill markers"
            id="rect34"
            width="7.8098822"
            height="8.0208435"
@@ -136,7 +136,7 @@
            inkscape:export-filename="..\..\barryBee\Assets\bears\blackbear\blackbear_pupil.svg"
            inkscape:export-xdpi="96"
            inkscape:export-ydpi="96" /><rect
-           style="display:none;fill:#f1f6f0;stroke:none;stroke-width:3.27601;stroke-linecap:square;stroke-linejoin:miter;paint-order:stroke fill markers"
+           style="display:inline;fill:#f1f6f0;stroke:none;stroke-width:3.27601;stroke-linecap:square;stroke-linejoin:miter;paint-order:stroke fill markers"
            id="rect38"
            width="7.8098822"
            height="8.0208435"
@@ -150,7 +150,7 @@
          id="layer6-6"
          inkscape:label="muzzle_stuff"
          style="display:inline;fill:#303843"
-         transform="translate(-0.20942688,-10.709732)"><rect
+         transform="translate(0.60552735,-10.709732)"><rect
            style="display:inline;fill:#96a9c1;stroke:#14233a;stroke-width:4.23333;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;paint-order:stroke fill markers"
            id="rect11-9"
            width="19.577812"
@@ -185,10 +185,7 @@
      inkscape:groupmode="layer"
      id="g15"
      inkscape:label="open_mouth"
-     style="display:none"
-     inkscape:export-filename="polarbear_head_open_mouth.svg"
-     inkscape:export-xdpi="96"
-     inkscape:export-ydpi="96"
+     style="display:inline"
      transform="translate(-28.155268,-12.185296)"><g
        inkscape:groupmode="layer"
        id="g7"
