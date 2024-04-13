@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc58nf6dj33b2"]
+
+[ext_resource type="Script" path="res://Scripts/stage_projectile.gd" id="1_pp07u"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nff1b"]
+
+[node name="stageProjectile" type="Node3D"]
+top_level = true
+script = ExtResource("1_pp07u")
+
+[node name="projectileSprite" type="Sprite3D" parent="."]
+ignore_occlusion_culling = true
+pixel_size = 0.08
+billboard = 2
+
+[node name="projectileHitbox" type="Area3D" parent="."]
+collision_layer = 16
+
+[node name="projectileHitboxCol" type="CollisionShape3D" parent="projectileHitbox"]
+shape = SubResource("SphereShape3D_nff1b")

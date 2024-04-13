@@ -8,7 +8,7 @@ extends Node3D
 @onready var shadowSprite := $shadowSprite
 func _ready():
 	shadowSprite.mesh.size = Vector2(max_shadow_radius, max_shadow_radius)*2
-
+	shadowRay.target_position = Vector3(0,-max_shadow_dist, 0)
 func _process(delta):
 	shadowSprite.visible = false
 	if casting_shadow:

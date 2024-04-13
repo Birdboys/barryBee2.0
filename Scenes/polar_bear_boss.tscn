@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://1wiux1hjeo7u"]
+[gd_scene load_steps=22 format=3 uid="uid://1wiux1hjeo7u"]
 
 [ext_resource type="Script" path="res://Scripts/polar_bear_boss.gd" id="1_n3cdl"]
 [ext_resource type="Texture2D" uid="uid://di02pcc4c2cfi" path="res://Assets/bears/polarbear/polarbear_head.svg" id="2_j4yhy"]
@@ -14,25 +14,6 @@
 [ext_resource type="Script" path="res://Scripts/boss_states/boss_anticipation.gd" id="12_pol2l"]
 [ext_resource type="Script" path="res://Scripts/boss_states/boss_attack.gd" id="13_ctic3"]
 [ext_resource type="Script" path="res://Scripts/boss_states/boss_recovery.gd" id="14_rnytt"]
-
-[sub_resource type="Animation" id="Animation_k333x"]
-resource_name = "idle"
-
-[sub_resource type="Animation" id="Animation_vsyt6"]
-resource_name = "anticipation1"
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("bossHead/earLeft:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(8, 8, 1), Vector3(8, 6, 1), Vector3(8, 8, 1), Vector3(8, 6, 1), Vector3(8, 8, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_b28h8"]
 length = 0.001
@@ -120,10 +101,74 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector3(1, 1, 1)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("bossBall:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.681, -5.5)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("bossHead:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("bossPawLeft/pawBall:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.6, 0.6, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("bossHead/snowBreathEmitter:emitting")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_vsyt6"]
+resource_name = "anticipation1"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bossHead/earLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(8, 8, 1), Vector3(8, 6, 1), Vector3(8, 8, 1), Vector3(8, 6, 1), Vector3(8, 8, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_een51"]
 resource_name = "attack1"
-length = 3.0
+length = 3.75
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -132,10 +177,10 @@ tracks/0/path = NodePath("bossPawLeft:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.5, 3, 3.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(12, 1, -4), Vector3(5, -3, -4)]
+"values": [Vector3(12, 1, -4), Vector3(5, -3, -4), Vector3(5, -3, -4), Vector3(5, 12, -4)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -144,10 +189,10 @@ tracks/1/path = NodePath("bossPawLeft:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, -2.61799)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -2.61799), Vector3(0, 0, -2.61799)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -156,10 +201,10 @@ tracks/2/path = NodePath("bossPawRight:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.5, 3, 3.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-13, 3, -4), Vector3(-5, -3, -4.2)]
+"values": [Vector3(-13, 3, -4), Vector3(-5, -3, -4.2), Vector3(-5, -3, -4.2), Vector3(-5, 12, -4.2)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -168,10 +213,10 @@ tracks/3/path = NodePath("bossPawRight:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 2.61799)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 2.61799), Vector3(0, 0, 2.61799)]
 }
 tracks/4/type = "method"
 tracks/4/imported = false
@@ -180,10 +225,13 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.55, 2.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.55, 3, 3.7),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": ["snow_breath"],
+"method": &"handleFace"
+}, {
+"args": ["neutral"],
 "method": &"handleFace"
 }, {
 "args": [],
@@ -209,11 +257,26 @@ tracks/6/path = NodePath("bossBall:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.55, 2.5),
+"times": PackedFloat32Array(0.55, 3.75),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("bossBall:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(3, 3.75),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector3(0, 3.681, -5.5), Vector3(0, 75, -5.5)]
+}
+
+[sub_resource type="Animation" id="Animation_k333x"]
+resource_name = "idle"
 
 [sub_resource type="Animation" id="Animation_5wccc"]
 resource_name = "recovery1"
@@ -266,11 +329,97 @@ tracks/3/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_y3n5x"]
+resource_name = "attack3"
+length = 4.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bossPawLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 2, 3, 3.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(12, 1, -4), Vector3(9, -3, -4), Vector3(9, -3, -4), Vector3(5, 12, -4), Vector3(5, 12, -4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bossPawLeft:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -2.61799), Vector3(0, 0, -2.61799), Vector3(0, 0, -1.57079)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.55, 2, 3.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": ["snow_breath"],
+"method": &"handleFace"
+}, {
+"args": ["neutral"],
+"method": &"handleFace"
+}, {
+"args": [false],
+"method": &"rollingSnowball"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bossHead:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3, 0.5, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.261799), Vector3(0, 0, 0.261799), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("bossPawLeft/pawBall:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.4, 0.4, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("bossPawLeft/pawBall:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.3, 3.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4mvh3"]
 _data = {
 "RESET": SubResource("Animation_b28h8"),
 "anticipation1": SubResource("Animation_vsyt6"),
 "attack1": SubResource("Animation_een51"),
+"attack3": SubResource("Animation_y3n5x"),
 "idle": SubResource("Animation_k333x"),
 "recovery1": SubResource("Animation_5wccc")
 }
@@ -344,6 +493,12 @@ cast_shadow = 0
 pixel_size = 0.08
 transparent = false
 texture = ExtResource("7_4tbb1")
+
+[node name="pawBall" type="Sprite3D" parent="bossPawLeft"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 1, 0, -4, -0.2)
+visible = false
+pixel_size = 0.08
+texture = ExtResource("10_fan6m")
 
 [node name="bossBall" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.681, -5.5)

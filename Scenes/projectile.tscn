@@ -15,6 +15,7 @@ pixel_size = 0.08
 billboard = 2
 
 [node name="shadowComponent" parent="." instance=ExtResource("2_mktu6")]
+scale_size = true
 
 [node name="projectileHitbox" type="Area3D" parent="."]
 collision_layer = 0
@@ -22,4 +23,4 @@ collision_layer = 0
 [node name="projectileHitboxCol" type="CollisionShape3D" parent="projectileHitbox"]
 shape = SubResource("SphereShape3D_nff1b")
 
-[connection signal="area_entered" from="projectileHitbox" to="." method="_on_projectile_hitbox_area_entered"]
+[connection signal="body_entered" from="projectileHitbox" to="." method="_on_projectile_hitbox_body_entered"]

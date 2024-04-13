@@ -74,3 +74,8 @@ func emitGroundParticle(amount: int, body_part: String):
 	var part = get_node(body_part)
 	if part:
 		emit_signal("ground_particle", amount,part.global_position)
+
+func getAttackPoint(ang):
+	var point = Vector3.FORWARD.rotated(Vector3.UP, ang) * field_radius
+	print("ATTACK POINT", point)
+	return point
