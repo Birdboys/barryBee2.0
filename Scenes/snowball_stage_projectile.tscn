@@ -17,3 +17,7 @@ collision_layer = 16
 
 [node name="projectileHitboxCol" type="CollisionShape3D" parent="projectileHitbox"]
 shape = SubResource("SphereShape3D_nff1b")
+
+[node name="lifetime" type="Timer" parent="."]
+
+[connection signal="timeout" from="lifetime" to="." method="_on_lifetime_timeout"]

@@ -77,5 +77,4 @@ func emitGroundParticle(amount: int, body_part: String):
 
 func getAttackPoint(ang):
 	var point = Vector3.FORWARD.rotated(Vector3.UP, ang) * field_radius
-	print("ATTACK POINT", point)
 	return point

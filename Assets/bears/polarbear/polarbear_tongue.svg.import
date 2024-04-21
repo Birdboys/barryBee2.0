@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp5jwri2ab8tt"
-path.s3tc="res://.godot/imported/polarbear_head_open_mouth.svg-8f3eea035b1ef6a2fd166f256cd5b426.s3tc.ctex"
-path.etc2="res://.godot/imported/polarbear_head_open_mouth.svg-8f3eea035b1ef6a2fd166f256cd5b426.etc2.ctex"
+uid="uid://m45g7qhgvifo"
+path.s3tc="res://.godot/imported/polarbear_tongue.svg-05237be3532a5ef03e391a17fae4301a.s3tc.ctex"
+path.etc2="res://.godot/imported/polarbear_tongue.svg-05237be3532a5ef03e391a17fae4301a.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/bears/polarbear/polarbear_head_open_mouth.svg"
-dest_files=["res://.godot/imported/polarbear_head_open_mouth.svg-8f3eea035b1ef6a2fd166f256cd5b426.s3tc.ctex", "res://.godot/imported/polarbear_head_open_mouth.svg-8f3eea035b1ef6a2fd166f256cd5b426.etc2.ctex"]
+source_file="res://Assets/bears/polarbear/polarbear_tongue.svg"
+dest_files=["res://.godot/imported/polarbear_tongue.svg-05237be3532a5ef03e391a17fae4301a.s3tc.ctex", "res://.godot/imported/polarbear_tongue.svg-05237be3532a5ef03e391a17fae4301a.etc2.ctex"]
 
 [params]
 

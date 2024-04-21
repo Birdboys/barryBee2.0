@@ -64,7 +64,7 @@ func bossDefeated():
 	TempData.time = total_player_fight_length / 1000
 	TempData.win = true
 	get_tree().call_deferred("change_scene_to_file","res://Scenes/temp_win_loss.tscn")
-	
+	 
 func playerDefeated():
 	if not boss.interrupted:
 		TempData.win = false

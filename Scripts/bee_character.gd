@@ -81,7 +81,7 @@ func _on_bee_hurtbox_area_entered(area):
 	print("WAS BOSS INTERRUPTED: %s" % get_tree().get_nodes_in_group("boss")[0].interrupted)
 	if not get_tree().get_nodes_in_group("boss")[0].interrupted:
 		print("BEE DIED")
-		call_deferred("emit_signal", "game_over") 
+		#call_deferred("emit_signal", "game_over") 
 	else:
 		print("BEE ALMOST DIED BUT DIDNT")
 
