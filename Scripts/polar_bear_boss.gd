@@ -2,7 +2,11 @@ extends Boss
 
 @onready var snowBreath := $bossHead/snowBreathEmitter
 @onready var pawLeft := $bossPawLeft
+@onready var pawLeftHurtbox := $bossPawLeft/pawLeftHurtbox
+@onready var pawLeftHitbox := $bossPawLeft/pawLeftHitbox
 @onready var pawRight := $bossPawRight
+@onready var pawRightHurtbox := $bossPawRight/pawRightHurtbox
+@onready var pawRightHitbox := $bossPawRight/pawRightHitbox
 @onready var bossHead := $bossHead
 @onready var bossMuzzle := $bossHead/muzzleSprite
 @onready var faceSprite := $bossHead/headSprite
@@ -31,15 +35,58 @@ var rolling_snowball_speed := 0.4
 
 func _ready():
 	super._ready()
-	anticipation_index = {'attack_big_snowball':'anticipation_lick_left','attack_many_snowballs':'anticipation_lick_right','attack_snowball_roll_right':'anticipation_left_ear','attack_snowball_roll_left':'anticipation_right_ear'}#,'attack2':'anticipation2','attack3':'anticipation3','attack4':'anticipation4','attack5':'anticipation5','attack6':'anticipation6'}
-	recovery_index = {'attack_big_snowball':'recovery1','attack_many_snowballs':'recovery1','attack_snowball_roll_right':'recovery1','attack_snowball_roll_left':'recovery1'}#,'attack2':'recovery2','attack3':'recovery3','attack4':'recovery1','attack5':'recovery2','attack6':'recovery4'}
-	attacks = ['attack_big_snowball','attack_many_snowballs', 'attack_snowball_roll_right','attack_snowball_roll_left']
+	anticipation_index = {'attack_paw_sweep_left':'anticipation_left_ear','attack_paw_sweep_right':'anticipation_right_ear','attack_big_snowball':'anticipation_lick_left','attack_many_snowballs':'anticipation_lick_right','attack_snowball_roll_right':'anticipation_left_ear','attack_snowball_roll_left':'anticipation_right_ear'}#,'attack2':'anticipation2','attack3':'anticipation3','attack4':'anticipation4','attack5':'anticipation5','attack6':'anticipation6'}
+	recovery_index = {'attack_paw_sweep_left':'recovery1','attack_paw_sweep_right':'recovery1','attack_big_snowball':'recovery1','attack_many_snowballs':'recovery1','attack_snowball_roll_right':'recovery1','attack_snowball_roll_left':'recovery1'}#,'attack2':'recovery2','attack3':'recovery3','attack4':'recovery1','attack5':'recovery2','attack6':'recovery4'}
+	attacks = ['attack_paw_sweep_left','attack_paw_sweep_right','attack_big_snowball']#['attack_big_snowball','attack_many_snowballs', 'attack_snowball_roll_right','attack_snowball_roll_left']
 	finishers = ['attack6']
 	bee_follow_speed = 40.0
-	
+
 func prepareAttackAnimation(attack: String):
 	var attackAnim = bossAnim.get_animation(attack) as Animation
 	match attack:
+		"attack_paw_slam_left", "attack_paw_slam_right":
+			var track_id
+			var point1
+			var point2
+			if attack == "attack_paw_slam_left":
+				track_id = attackAnim.find_track("bossPawLeft:position", Animation.TYPE_VALUE)
+				point1 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle-deg_to_rad(15)) * field_radius + Vector3.UP * 20 + (Vector3.UP * pawLeftSprite.get_item_rect().size.y/2 * pawLeftSprite.pixel_size)
+				point2 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle-deg_to_rad(15)) * field_radius + (Vector3.UP * pawLeftSprite.get_item_rect().size.y/2 * pawLeftSprite.pixel_size)
+			else:
+				track_id = attackAnim.find_track("bossPawRight:position", Animation.TYPE_VALUE)
+				point1 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle+deg_to_rad(15)) * field_radius + Vector3.UP * 20 + (Vector3.UP * pawRightSprite.get_item_rect().size.y/2 * pawRightSprite.pixel_size)
+				point2 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle+deg_to_rad(15)) * field_radius + (Vector3.UP * pawRightSprite.get_item_rect().size.y/2 * pawRightSprite.pixel_size)
+			var key_id_1 = attackAnim.track_find_key(track_id, 0.3)
+			var key_id_2 = attackAnim.track_find_key(track_id, 1.5)
+			var key_id_3 = attackAnim.track_find_key(track_id, 1.6)
+			var key_id_4 = attackAnim.track_find_key(track_id, 3.5)
+			attackAnim.track_set_key_value(track_id, key_id_1, to_local(point1))
+			attackAnim.track_set_key_value(track_id, key_id_2, to_local(point1))
+			attackAnim.track_set_key_value(track_id, key_id_3, to_local(point2))
+			attackAnim.track_set_key_value(track_id, key_id_4, to_local(point2))
+		"attack_paw_sweep_left", "attack_paw_sweep_right":
+			var track_id
+			var point1
+			var point2
+			var point3
+			if attack == "attack_paw_sweep_left":
+				track_id = attackAnim.find_track("bossPawLeft:position", Animation.TYPE_VALUE)
+				point1 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle-deg_to_rad(45)) * field_radius + (Vector3.UP * pawLeftSprite.get_item_rect().size.y/2 * pawLeftSprite.pixel_size)
+				point2 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle) * field_radius + (Vector3.UP * pawLeftSprite.get_item_rect().size.y/2 * pawLeftSprite.pixel_size)
+				point3 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle+deg_to_rad(45)) * field_radius + (Vector3.UP * pawLeftSprite.get_item_rect().size.y/2 * pawLeftSprite.pixel_size)
+			else:
+				track_id = attackAnim.find_track("bossPawRight:position", Animation.TYPE_VALUE)
+				point1 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle+deg_to_rad(45)) * field_radius + (Vector3.UP * pawRightSprite.get_item_rect().size.y/2 * pawRightSprite.pixel_size)
+				point2 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle) * field_radius + (Vector3.UP * pawRightSprite.get_item_rect().size.y/2 * pawRightSprite.pixel_size)
+				point3 = Vector3.FORWARD.rotated(Vector3.UP, attack_angle-deg_to_rad(45)) * field_radius + (Vector3.UP * pawRightSprite.get_item_rect().size.y/2 * pawRightSprite.pixel_size)
+			var key_id_1 = attackAnim.track_find_key(track_id, 0.35)
+			var key_id_2 = attackAnim.track_find_key(track_id, 1.0)
+			var key_id_3 = attackAnim.track_find_key(track_id, 1.5)
+			var key_id_4 = attackAnim.track_find_key(track_id, 2.0)
+			attackAnim.track_set_key_value(track_id, key_id_1, to_local(point1))
+			attackAnim.track_set_key_value(track_id, key_id_2, to_local(point1))
+			attackAnim.track_set_key_value(track_id, key_id_3, to_local(point2))
+			attackAnim.track_set_key_value(track_id, key_id_4, to_local(point3))
 		"attack_big_snowball","attack_many_snowballs":
 			var track_id = attackAnim.find_track("bossPawLeft/pawLeftSprite:modulate", Animation.TYPE_VALUE)
 			var key_id_1 = attackAnim.track_find_key(track_id, 0.55)
@@ -121,7 +168,6 @@ func bigSnowball():
 
 func manySnowball():
 	for x in range(0, 360, 360/4):
-		print("creating snowball at %s degrees" % x)
 		createSnowball(3, attack_angle + deg_to_rad(x), 75 + randi_range(0,5), 5)
 		
 func rollingSnowball(left: bool):
@@ -157,8 +203,6 @@ func freezePaw(paw_left: bool, paw_right: bool):
 		freezeTimeRight.start(freeze_time)
 
 func unfreezePaw():
-	
-	
 	if (pawLeftFrozen and should_thaw_left) and (pawRightFrozen and should_thaw_right):
 		should_thaw_left = false
 		should_thaw_right = false
@@ -178,3 +222,17 @@ func _on_freeze_time_left_timeout():
 	should_thaw_left = true
 func _on_freeze_time_right_timeout():
 	should_thaw_right = true
+
+func toggleHitboxes(parts: Array, on: bool):
+	for part in parts:
+		match part:
+			"pawLeft":
+				pawLeftHitbox.monitorable = on
+				pawLeftHurtbox.monitoring = on
+				if on and pawLeftFrozen:
+					pawLeftHurtbox.monitoring = false
+			"pawRight":
+				pawRightHitbox.monitorable = on
+				pawRightHurtbox.monitoring = on
+				if on and pawRightFrozen:
+					pawRightHurtbox.monitoring = false

@@ -15,6 +15,7 @@ billboard = 2
 
 [node name="projectileHitbox" type="Area3D" parent="."]
 collision_layer = 16
+collision_mask = 3
 
 [node name="projectileHitboxCol" type="CollisionShape3D" parent="projectileHitbox"]
 shape = SubResource("SphereShape3D_nff1b")

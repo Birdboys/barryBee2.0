@@ -36,7 +36,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("cheat"): increaseProgress(5)
 	current_fight_progress += delta
 	
-func setField(radius, segments, platform_length=1):
+func setField(radius, segments, platform_length=1.0):
 	fieldPlatform.radius = radius + platform_length/2.0 + 1
 	fieldPlatform.sides = segments
 	fieldHole.radius = radius - platform_length/2.0

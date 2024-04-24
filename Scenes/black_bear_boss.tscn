@@ -1272,7 +1272,6 @@ shape = SubResource("CylinderShape3D_yllqr")
 
 [node name="shadowComponent" parent="bossPawRight" instance=ExtResource("6_ugqbr")]
 max_shadow_radius = 5.5
-casting_shadow = false
 
 [node name="bossBody" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
