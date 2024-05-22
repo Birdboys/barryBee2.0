@@ -5,6 +5,7 @@ extends BossState
 @export var idle_time_min := 1.5
 @export var idle_time_max := 3.0
 @export var idleTimer : Timer
+var done_idle = false
 
 func _ready():
 	idleTimer.timeout.connect(idleTimerDone)
@@ -18,6 +19,12 @@ func update(delta):
 		boss.rotation.y = lerp_angle(boss.rotation.y, boss.bee_angle - boss_follow_angle * sign(angle_difference(boss.rotation.y, boss.bee_angle)), boss_follow_speed)
 	boss.handlePupils(delta, boss.bee_angle, boss.bee_pos)
 	
+	if not boss.bossAnim.is_playing():
+		if done_idle:
+			emit_signal("transitioned",self,"bossAnticipation")
+		else:
+			boss.bossAnim.play("idle")
+	
 func idleTimerDone():
-	emit_signal("transitioned",self,"bossAnticipation")
+	done_idle = true
 

@@ -1,8 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://bibpxh5mi04v8"]
+[gd_scene load_steps=26 format=3 uid="uid://bibpxh5mi04v8"]
 
 [ext_resource type="Script" path="res://Scripts/test_level_arctic.gd" id="1_vq1er"]
 [ext_resource type="PackedScene" uid="uid://jxq0tqjk3anq" path="res://Scenes/bee_character.tscn" id="2_h3iv1"]
-[ext_resource type="Texture2D" uid="uid://cgf8ov0ppears" path="res://Assets/temp/test_grass.svg" id="4_p8wos"]
 [ext_resource type="Texture2D" uid="uid://chx0umwv0nyxi" path="res://Assets/temp/forest_bg3.png" id="5_e5wrv"]
 [ext_resource type="Texture2D" uid="uid://cymsjf3nhor8g" path="res://Assets/temp/forest_bg2.png" id="6_n3ar6"]
 [ext_resource type="Texture2D" uid="uid://djmi0mpccudcp" path="res://Assets/temp/forest_bg1.png" id="7_go4nx"]
@@ -27,30 +26,41 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvf7m"]
 shading_mode = 0
-albedo_color = Color(0.266667, 0.439216, 0.176471, 1)
+albedo_color = Color(0.831373, 0.776471, 0.572549, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwc5o"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p4gqv"]
+load_path = "res://.godot/imported/test_snow.png-c3e3a2bdd9091eeb49f5a69ea2a3f0e4.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ylv0q"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
 shading_mode = 0
-albedo_texture = ExtResource("4_p8wos")
-uv1_scale = Vector3(0.25, 0.25, 0.25)
-uv1_offset = Vector3(-2.57, 0.49, 0)
-uv1_triplanar = true
+albedo_texture = SubResource("CompressedTexture2D_p4gqv")
 texture_filter = 0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_jux0y"]
-material = SubResource("StandardMaterial3D_cwc5o")
+material = SubResource("StandardMaterial3D_ylv0q")
 top_radius = 4.0
 bottom_radius = 4.0
-height = 1.5
 cap_top = false
 cap_bottom = false
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_he2bh"]
+load_path = "res://.godot/imported/test_snow.png-c3e3a2bdd9091eeb49f5a69ea2a3f0e4.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ltpv"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+albedo_texture = SubResource("CompressedTexture2D_he2bh")
+texture_filter = 0
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_f1wxd"]
-material = SubResource("StandardMaterial3D_cwc5o")
+material = SubResource("StandardMaterial3D_2ltpv")
 flip_faces = true
 cap_top = false
 cap_bottom = false

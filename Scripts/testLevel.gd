@@ -37,14 +37,16 @@ func _process(delta):
 	current_fight_progress += delta
 	
 func setField(radius, segments, platform_length=1):
-	fieldPlatform.radius = radius + platform_length/2.0 + 1
+	fieldPlatform.radius = radius + platform_length/2.0 + 2
 	fieldPlatform.sides = segments
-	fieldHole.radius = radius - platform_length/2.0
+	fieldHole.radius = radius - platform_length/2.0 - 0.1
 	fieldHole.sides = segments
 	frontRing.mesh.top_radius = field_radius+field_platform_length/2.0 + 1
 	frontRing.mesh.bottom_radius = field_radius+field_platform_length/2.0 + 1
+	frontRing.mesh.material.uv1_scale.x = (field_radius+field_platform_length/2.0 + 1)
 	backRing.mesh.top_radius = field_radius-field_platform_length/2.0
 	backRing.mesh.bottom_radius = field_radius-field_platform_length/2.0
+	backRing.mesh.material.uv1_scale.x = (field_radius+field_platform_length/2.0 + 1)
 	
 func placeBee(deg):
 	bee.position = Vector3.FORWARD.rotated(Vector3.UP, deg_to_rad(deg)) * field_radius

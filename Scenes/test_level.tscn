@@ -1,9 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://jllmtcbv228d"]
+[gd_scene load_steps=25 format=3 uid="uid://jllmtcbv228d"]
 
 [ext_resource type="Script" path="res://Scripts/testLevel.gd" id="1_o1vrm"]
 [ext_resource type="PackedScene" uid="uid://jxq0tqjk3anq" path="res://Scenes/bee_character.tscn" id="2_yhk1x"]
 [ext_resource type="PackedScene" uid="uid://bgvk44kiikdnm" path="res://Scenes/black_bear_boss.tscn" id="4_e4g41"]
-[ext_resource type="Texture2D" uid="uid://cgf8ov0ppears" path="res://Assets/temp/test_grass.svg" id="4_qqyeg"]
+[ext_resource type="Texture2D" uid="uid://boctemlcnutel" path="res://Assets/temp/test_grass.png" id="4_hrl13"]
 [ext_resource type="Texture2D" uid="uid://chx0umwv0nyxi" path="res://Assets/temp/forest_bg3.png" id="6_qx5hr"]
 [ext_resource type="Texture2D" uid="uid://cymsjf3nhor8g" path="res://Assets/temp/forest_bg2.png" id="7_p6oaf"]
 [ext_resource type="Texture2D" uid="uid://htnfcdlg0v55" path="res://Assets/temp/test_forest.svg" id="8_0y34i"]
@@ -35,10 +35,8 @@ alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
 shading_mode = 0
-albedo_texture = ExtResource("4_qqyeg")
-uv1_scale = Vector3(0.25, 0.25, 0.25)
-uv1_offset = Vector3(0, 0.5, 0)
-uv1_triplanar = true
+albedo_texture = ExtResource("4_hrl13")
+uv1_scale = Vector3(1, 2, 1)
 uv1_triplanar_sharpness = 150.0
 texture_filter = 0
 
@@ -46,13 +44,27 @@ texture_filter = 0
 material = SubResource("StandardMaterial3D_cwc5o")
 top_radius = 4.0
 bottom_radius = 4.0
-height = 1.5
+height = 4.0
 cap_top = false
 cap_bottom = false
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_f1wxd"]
-material = SubResource("StandardMaterial3D_cwc5o")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oe4v6"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("4_hrl13")
+uv1_scale = Vector3(1, 2, 1)
+uv1_triplanar_sharpness = 150.0
+texture_filter = 0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4qmrg"]
+material = SubResource("StandardMaterial3D_oe4v6")
 flip_faces = true
+top_radius = 15.0
+bottom_radius = 15.0
+height = 4.0
 cap_top = false
 cap_bottom = false
 
@@ -132,10 +144,12 @@ use_collision = true
 
 [node name="platform" type="CSGCylinder3D" parent="levelRing"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+cast_shadow = 0
 material = SubResource("StandardMaterial3D_wvf7m")
 
 [node name="hole" type="CSGCylinder3D" parent="levelRing"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+cast_shadow = 0
 operation = 2
 
 [node name="testCam" type="Camera3D" parent="."]
@@ -151,14 +165,14 @@ hitbox_list = []
 one_shot = true
 
 [node name="frontRing" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+transform = Transform3D(0.999999, -0.00106817, -0.000138288, 0.0010681, 0.999999, -0.000498506, 0.000138829, 0.000498355, 1, 0, 1.25, 0)
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_jux0y")
 
 [node name="backRing" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 cast_shadow = 0
-mesh = SubResource("CylinderMesh_f1wxd")
+mesh = SubResource("CylinderMesh_4qmrg")
 
 [node name="backgrounds2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22, 0)
