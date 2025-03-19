@@ -14,6 +14,9 @@ extends Boss
 @onready var pawRightBall := $bossPawRight/pawBall
 @onready var pawLeftSprite := $bossPawLeft/pawLeftSprite
 @onready var pawRightSprite := $bossPawRight/pawRightSprite
+@onready var frostBreath := $bossHead/frostBreath
+@onready var frostBreathCol := $bossHead/frostBreath/frostBreathArea/frostBreathCol
+@onready var frostBreathArea := $bossHead/frostBreath/frostBreathArea
 @onready var pupils := $bossHead/pupil
 @onready var tongue := $bossHead/tongueSprite
 @onready var freezeTimeLeft := $freezeTimeLeft
@@ -40,6 +43,7 @@ func _ready():
 	attacks = ['attack_paw_sweep_left','attack_paw_sweep_right','attack_big_snowball']#['attack_big_snowball','attack_many_snowballs', 'attack_snowball_roll_right','attack_snowball_roll_left']
 	finishers = ['attack6']
 	bee_follow_speed = 40.0
+	readySnowBreath()
 
 func prepareAttackAnimation(attack: String):
 	var attackAnim = bossAnim.get_animation(attack) as Animation
@@ -236,3 +240,10 @@ func toggleHitboxes(parts: Array, on: bool):
 				pawRightHurtbox.monitoring = on
 				if on and pawRightFrozen:
 					pawRightHurtbox.monitoring = false
+
+func readySnowBreath():
+	var breath_length = int(sqrt(pow(bossHead.global_position.y,2) + pow(30.0,2)))
+	var breath_angle = atan(bossHead.global_position.y/30.0)
+	frostBreathCol.shape.height = breath_length
+	frostBreathArea.position.z = -breath_length/2
+	frostBreath.rotation.x = -breath_angle

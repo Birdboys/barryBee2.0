@@ -20,7 +20,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4p0fj"]
 radius = 5.0
-height = 15.0
+height = 35.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_rp35i"]
 height = 11.086
@@ -1378,7 +1378,7 @@ emitting = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0)
 
 [node name="frostBreathArea" type="Area3D" parent="bossHead/frostBreath"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 collision_layer = 16
 collision_mask = 0
 
